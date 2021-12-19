@@ -9,5 +9,9 @@ class AbstractPizzaRepo(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def get_all(self) -> BasePizza:
+        pass
+
+    @abc.abstractmethod
     def save(self, order: BasePizza) -> None:
         pass
