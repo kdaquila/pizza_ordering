@@ -2,5 +2,5 @@ class InvalidPizzaType(Exception):
     pass
 
 
-class CannotCancelOrder(Exception):
+class CannotCancelPizza(Exception):
     pass

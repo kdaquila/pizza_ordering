@@ -1,8 +1,8 @@
-from application.clock.clock import Clock
+from application.clock.abstract_clock import AbstractClock
 import time
 
 
-class LocalClock(Clock):
+class LocalClock(AbstractClock):
     def __init__(self, time_shift_sec: int = 0):
         self.time_shift_sec = time_shift_sec
 
