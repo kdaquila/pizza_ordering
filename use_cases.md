@@ -1,5 +1,6 @@
-_X_ User can order a cheese pizza
-_X_ User can order a pepperoni pizza
-_X_ User can order a sausage pizza
-_X_ User can cancel a pizza order
-___ User can view current orders
+## Pizza Use Cases
+-[X] User can order a cheese pizza
+-[X] User can order a pepperoni pizza
+-[X] User can order a sausage pizza
+-[X] User can cancel a pizza order
+-[X] User can get list of current pizza orders
