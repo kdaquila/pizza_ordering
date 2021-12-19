@@ -1,15 +1,15 @@
-from application.order_repo.pizza_order_repo import PizzaOrderRepo
-from domain.entities.pizza_order.base_pizza_order import BasePizzaOrder
-from domain.value_objects import OrderId
+from application.pizza_repo.abstract_pizza_order_repo import AbstractPizzaRepo
+from domain.entities.pizza.base_pizza import BasePizza
+from domain.value_objects import PizzaId
 
 
-class InMemoryPizzaRepo(PizzaOrderRepo):
+class InMemoryPizzaRepo(AbstractPizzaRepo):
     def __init__(self):
-        self.orders: [BasePizzaOrder] = []
+        self.orders: [BasePizza] = []
 
-    def get(self, order_id: OrderId) -> BasePizzaOrder:
-        return next(order for order in self.orders if order.order_id == order_id)
+    def get(self, pizza_id: PizzaId) -> BasePizza:
+        return next(order for order in self.orders if order.pizza_id == pizza_id)
 
-    def save(self, order: BasePizzaOrder) -> None:
+    def save(self, order: BasePizza) -> None:
         self.orders.append(order)
 

@@ -1,11 +1,11 @@
-from application.clock.clock import Clock
-from application.order_repo.pizza_order_repo import PizzaOrderRepo
-from domain.exceptions import CannotCancelOrder
+from application.clock.abstract_clock import AbstractClock
+from application.pizza_repo.abstract_pizza_order_repo import AbstractPizzaRepo
+from domain.exceptions import CannotCancelPizza
 import config
 
 
-class CancelPizza:
-    def __init__(self, pizza_repo: PizzaOrderRepo, clock: Clock):
+class CancelPizzaUseCase:
+    def __init__(self, pizza_repo: AbstractPizzaRepo, clock: AbstractClock):
         self.clock = clock
         self.pizza_repo = pizza_repo
 
@@ -18,4 +18,4 @@ class CancelPizza:
             pizza_order.stop_cooking_at(current_time)
             self.pizza_repo.save(pizza_order)
         else:
-            raise CannotCancelOrder()
+            raise CannotCancelPizza()

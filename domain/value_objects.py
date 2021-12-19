@@ -1,1 +1,1 @@
-OrderId = int
+PizzaId = int

@@ -1,9 +1,6 @@
-import time
-
-
-class BasePizzaOrder:
-    def __init__(self, order_id, name, description) -> None:
-        self.order_id = order_id
+class BasePizza:
+    def __init__(self, pizza_id, name, description) -> None:
+        self.pizza_id = pizza_id
         self.name = name
         self.description = description
         self.start_time = None
@@ -21,8 +18,3 @@ class BasePizzaOrder:
 
     def __str__(self) -> str:
         return self.name
-
-
-if __name__ == "__main__":
-    x = BasePizzaOrder(1, "name", "description")
-    print(x)
