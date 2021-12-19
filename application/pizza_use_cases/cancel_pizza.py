@@ -1,5 +1,5 @@
 from application.clock.abstract_clock import AbstractClock
-from application.pizza_repo.abstract_pizza_order_repo import AbstractPizzaRepo
+from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 from domain.exceptions import CannotCancelPizza
 import config
 

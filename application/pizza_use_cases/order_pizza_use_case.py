@@ -1,6 +1,6 @@
 from application.clock.abstract_clock import AbstractClock
 from application.pizza_id.abstract_pizza_id_generator import AbstractPizzaIdGenerator
-from application.pizza_repo.abstract_pizza_order_repo import AbstractPizzaRepo
+from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 from domain.entities.pizza.cheese_pizza import CheesePizza
 from domain.entities.pizza.pepperoni_pizza import PepperoniPizza
 from domain.entities.pizza.sausage_pizza import SausagePizza
@@ -17,11 +17,11 @@ class PizzaType:
 class OrderPizzaUseCase:
     def __init__(self, pizza_repo: AbstractPizzaRepo, order_id_maker: AbstractPizzaIdGenerator, clock: AbstractClock) -> None:
         self.pizza_repo = pizza_repo
-        self.order_id_maker = order_id_maker
+        self.pizza_id_generator = order_id_maker
         self.clock = clock
 
     def execute(self, pizza_type: int) -> PizzaId:
-        new_id = self.order_id_maker.create_new_id()
+        new_id = self.pizza_id_generator.create_new_id()
         current_time = self.clock.current_unix_time_sec()
         if pizza_type == PizzaType.CHEESE:
             new_pizza = CheesePizza(new_id)
