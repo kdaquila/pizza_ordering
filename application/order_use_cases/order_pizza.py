@@ -23,7 +23,6 @@ class OrderPizza:
     def execute(self, pizza_type: int) -> OrderId:
         new_id = self.order_id_maker.create_new_id()
         current_time = self.clock.get_current_unixtime_sec()
-        new_pizza = None
         if pizza_type == PizzaType.CHEESE:
             new_pizza = CheesePizzaOrder(new_id)
         elif pizza_type == PizzaType.PEPPERONI:
