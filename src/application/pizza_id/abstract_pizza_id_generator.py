@@ -1,6 +1,6 @@
 import abc
 
-from domain.value_objects import PizzaId
+from src.domain.value_objects.pizza_id import PizzaId
 
 
 class AbstractPizzaIdGenerator(abc.ABC):

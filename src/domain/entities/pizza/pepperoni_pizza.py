@@ -1,4 +1,4 @@
-from domain.entities.pizza.base_pizza import BasePizza
+from src.domain.entities.pizza.base_pizza import BasePizza
 
 
 class PepperoniPizza(BasePizza):

@@ -1,6 +1,6 @@
-from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
-from domain.entities.pizza.base_pizza import BasePizza
-from domain.value_objects import PizzaId
+from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
+from src.domain.entities.pizza.base_pizza import BasePizza
+from src.domain.value_objects.pizza_id import PizzaId
 
 
 class InMemoryPizzaRepo(AbstractPizzaRepo):
