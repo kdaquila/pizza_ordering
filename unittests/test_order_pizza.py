@@ -1,8 +1,8 @@
 import pytest
 
-from application.clock.local_clock import LocalClock
-from application.pizza_use_cases.order_pizza_use_case import OrderPizzaUseCase, PizzaType
-from domain.exceptions import InvalidPizzaType
+from src.application.clock.local_clock import LocalClock
+from src.application.pizza_use_cases.order_pizza_use_case import OrderPizzaUseCase, PizzaType
+from src.domain.exceptions import InvalidPizzaType
 from unittests.mocks.in_memory_pizza_repo import InMemoryPizzaRepo
 from unittests.mocks.integer_pizza_id_generator import IntegerPizzaIdGenerator
 

@@ -15,6 +15,3 @@ class BasePizza:
     @property
     def is_cooking(self) -> bool:
         return (self.start_time is not None) and (self.stop_time is None)
-
-    def __str__(self) -> str:
-        return self.name

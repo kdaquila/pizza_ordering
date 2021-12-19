@@ -1,6 +1,6 @@
 import abc
-from domain.entities.pizza.base_pizza import BasePizza
-from domain.value_objects import PizzaId
+from src.domain.entities.pizza.base_pizza import BasePizza
+from src.domain.value_objects.pizza_id import PizzaId
 
 
 class AbstractPizzaRepo(abc.ABC):

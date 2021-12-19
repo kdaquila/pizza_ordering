@@ -1,5 +1,5 @@
-from application.clock.abstract_clock import AbstractClock
-from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
+from src.application.clock.abstract_clock import AbstractClock
+from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 
 
 class GetPizzaUseCase:
