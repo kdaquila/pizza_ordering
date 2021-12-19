@@ -3,5 +3,5 @@ import abc
 
 class Clock(abc.ABC):
     @abc.abstractmethod
-    def get_current_unixtime_sec(self) -> int:
+    def current_unix_time_sec(self) -> int:
         pass
