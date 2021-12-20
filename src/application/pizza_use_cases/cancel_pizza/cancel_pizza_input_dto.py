@@ -1,4 +1,4 @@
-from domain.value_objects.pizza_id import PizzaId
+from src.domain.value_objects.pizza_id import PizzaId
 
 
 class CancelPizzaInputDTO:

@@ -1,3 +1,4 @@
+from src.domain.exceptions import PizzaNotFound
 from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 from src.domain.entities.pizza.base_pizza import BasePizza
 from src.domain.value_objects.pizza_id import PizzaId
@@ -8,11 +9,13 @@ class InMemoryPizzaRepo(AbstractPizzaRepo):
         self.pizzas: list = []
 
     def get(self, pizza_id: PizzaId) -> BasePizza:
-        return next(pizza for pizza in self.pizzas if pizza.pizza_id == pizza_id)
+        try:
+            return next(pizza for pizza in self.pizzas if pizza.pizza_id == pizza_id)
+        except StopIteration:
+            raise PizzaNotFound
 
     def get_all(self) -> list:
         return self.pizzas
 
     def save(self, pizza: BasePizza) -> None:
         self.pizzas.append(pizza)
-

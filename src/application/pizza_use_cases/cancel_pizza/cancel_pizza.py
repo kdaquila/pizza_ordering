@@ -1,8 +1,7 @@
 from src.application.clock.abstract_clock import AbstractClock
 from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 from src.domain.exceptions import CannotCancelPizza
-from src.domain.value_objects.pizza_id import PizzaId
-from application.pizza_use_cases.cancel_pizza.cancel_pizza_input_dto import CancelPizzaInputDTO
+from src.application.pizza_use_cases.cancel_pizza.cancel_pizza_input_dto import CancelPizzaInputDTO
 import config
 
 

@@ -1,3 +1,3 @@
 class OrderPizzaInputDTO:
-    def __init__(self, pizza_type):
+    def __init__(self, pizza_type: int):
         self.pizza_type = pizza_type

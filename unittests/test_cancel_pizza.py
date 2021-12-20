@@ -5,8 +5,8 @@ from application.pizza_use_cases.order_pizza.order_pizza_use_case import OrderPi
 from application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
 from application.pizza_use_cases.cancel_pizza.cancel_pizza_input_dto import CancelPizzaInputDTO
 from src.domain.exceptions import CannotCancelPizza
-from unittests.mocks.in_memory_pizza_repo import InMemoryPizzaRepo
-from unittests.mocks.integer_pizza_id_generator import IntegerPizzaIdGenerator
+from application.pizza_repo.in_memory_pizza_repo import InMemoryPizzaRepo
+from application.pizza_id.integer_pizza_id_generator import IntegerPizzaIdGenerator
 from src.application.clock.local_clock import LocalClock
 import config
 

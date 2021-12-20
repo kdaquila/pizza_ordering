@@ -4,3 +4,7 @@ class InvalidPizzaType(Exception):
 
 class CannotCancelPizza(Exception):
     pass
+
+
+class PizzaNotFound(Exception):
+    pass

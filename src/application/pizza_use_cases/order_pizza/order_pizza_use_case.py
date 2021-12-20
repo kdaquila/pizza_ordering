@@ -1,4 +1,4 @@
-from application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
+from src.application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
 from src.application.clock.abstract_clock import AbstractClock
 from src.application.pizza_id.abstract_pizza_id_generator import AbstractPizzaIdGenerator
 from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
