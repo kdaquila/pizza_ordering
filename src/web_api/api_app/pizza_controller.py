@@ -1,56 +1,47 @@
 from django.http import HttpResponse
 from django.views import View
-from src.application.clock.local_clock import LocalClock
-from src.application.pizza_repo.in_memory_pizza_repo import InMemoryPizzaRepo
-from src.application.pizza_id_generator.integer_pizza_id_generator import IntegerPizzaIdGenerator
-from src.application.pizza_use_cases.get_all_pizzas.get_pizzas_use_case import GetPizzaUseCase
-from src.application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
-from src.application.pizza_use_cases.order_pizza.order_pizza_use_case import OrderPizzaUseCase
-from src.application.pizza_use_cases.order_pizza.order_pizza_input_dto_service import OrderPizzaInputDTOService
-from src.application.pizza_use_cases.cancel_pizza.cancel_pizza import CancelPizzaUseCase
-from src.application.pizza_use_cases.cancel_pizza.cancel_pizza_input_dto import CancelPizzaInputDTO
+from application.clock import LocalClock
+from application.pizza_repo import InMemoryPizzaRepo
+from application.pizza_id_generator import IntegerPizzaIdGenerator
+from application.use_cases import cancel_pizza, find_pizza, order_pizza
 
 import json
 import jsonpickle
 
 
 class PizzaController(View):
-    @staticmethod
-    def get(request):
+    def get(self, request):
         # TODO remove this once database is being used
         pizza_repo = InMemoryPizzaRepo()
-        order_pizza_use_case = OrderPizzaUseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
-        pizza_type = OrderPizzaUseCase.PizzaType.CHEESE
-        order_pizza_use_case.execute(OrderPizzaInputDTO(pizza_type))
-        order_pizza_use_case.execute(OrderPizzaInputDTO(pizza_type))
+        order_pizza_use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
+        input_dto = order_pizza.InputDTOFactory.build({"pizza_type": "cheese"})
+        order_pizza_use_case.execute(input_dto)
+        order_pizza_use_case.execute(input_dto)
 
         # TODO replace this using dependency injection
-        get_pizza_use_case = GetPizzaUseCase(pizza_repo, LocalClock())
+        find_pizza_use_case = find_pizza.UseCase(pizza_repo, LocalClock())
 
-        output_dto = get_pizza_use_case.execute()
+        output_dto = find_pizza_use_case.execute()
         json_str = jsonpickle.encode(output_dto, unpicklable=False)
         return HttpResponse(json_str)
 
-    @staticmethod
-    def post(request):
+    def post(self, request):
         json_body = json.loads(request.body)
-        input_dto: OrderPizzaInputDTO = OrderPizzaInputDTOService.build_dto(json_body)
+        input_dto = order_pizza.InputDTOFactory.build(json_body)
 
         # TODO replace this using dependency injection
-        order_pizza_use_case = OrderPizzaUseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
+        order_pizza_use_case = order_pizza.UseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
 
         order_pizza_use_case.execute(input_dto)
         return HttpResponse('creating a new pizza order')
 
-    @staticmethod
-    def put(request, pizza_id):
+    def put(self, request, pizza_id):
         # TODO remove this once database is being used
         pizza_repo = InMemoryPizzaRepo()
-        order_pizza_use_case = OrderPizzaUseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
-        pizza_type = OrderPizzaUseCase.PizzaType.CHEESE
-        order_pizza_use_case.execute(OrderPizzaInputDTO(pizza_type))
+        order_pizza_use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
+        order_pizza_input_dto = order_pizza.InputDTOFactory.build({"pizza_type": "cheese"})
+        order_pizza_use_case.execute(order_pizza_input_dto)
 
-        input_dto = CancelPizzaInputDTO(pizza_id)
-        cancel_pizza_use_case = CancelPizzaUseCase(pizza_repo, LocalClock())
-        cancel_pizza_use_case.execute(input_dto)
+        cancel_pizza_use_case = cancel_pizza.UseCase(pizza_repo, LocalClock())
+        cancel_pizza_use_case.execute(cancel_pizza.InputDTO(pizza_id))
         return HttpResponse(f"canceling pizza order {pizza_id}")

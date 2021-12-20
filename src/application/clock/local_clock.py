@@ -1,4 +1,4 @@
-from src.application.clock.abstract_clock import AbstractClock
+from application.clock.abstract_clock import AbstractClock
 import time
 
 

@@ -1,7 +1,7 @@
-from src.domain.exceptions import PizzaNotFound
-from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
-from src.domain.entities.pizza.base_pizza import BasePizza
-from src.domain.value_objects.pizza_id import PizzaId
+from domain.exceptions import PizzaNotFound
+from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
+from domain.pizza.base_pizza import BasePizza
+from domain.pizza_id.pizza_id import PizzaId
 
 
 class InMemoryPizzaRepo(AbstractPizzaRepo):

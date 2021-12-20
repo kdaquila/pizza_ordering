@@ -1,4 +1,4 @@
 .idea
 .pytest_cache
-*config.py
+src/config.py
 *.coverage

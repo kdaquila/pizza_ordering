@@ -1,3 +1,3 @@
 import pytest
 
-pytest.main(["--cov", "src", "."])
+pytest.main(["--cov", "src", ".", "--cov-report",  "term-missing"])

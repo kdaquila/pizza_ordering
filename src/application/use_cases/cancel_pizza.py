@@ -1,16 +1,21 @@
-from src.application.clock.abstract_clock import AbstractClock
-from src.application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
-from src.domain.exceptions import CannotCancelPizza
-from src.application.pizza_use_cases.cancel_pizza.cancel_pizza_input_dto import CancelPizzaInputDTO
 import config
+from application.clock.abstract_clock import AbstractClock
+from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
+from domain.exceptions import CannotCancelPizza
+from domain.pizza_id.pizza_id import PizzaId
 
 
-class CancelPizzaUseCase:
+class InputDTO:
+    def __init__(self, pizza_id: PizzaId) -> None:
+        self.pizza_id = pizza_id
+
+
+class UseCase:
     def __init__(self, pizza_repo: AbstractPizzaRepo, clock: AbstractClock) -> None:
         self.clock = clock
         self.pizza_repo = pizza_repo
 
-    def execute(self, input_dto: CancelPizzaInputDTO) -> None:
+    def execute(self, input_dto: InputDTO) -> None:
         current_time = self.clock.current_unix_time_sec()
         pizza_order = self.pizza_repo.get(input_dto.pizza_id)
         start_time = pizza_order.start_time

@@ -1,22 +1,21 @@
 import pytest
 
-from src.application.clock.local_clock import LocalClock
-from application.pizza_use_cases.order_pizza.order_pizza_use_case import OrderPizzaUseCase
-from application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
-from src.domain.exceptions import InvalidPizzaType
-from application.pizza_repo.in_memory_pizza_repo import InMemoryPizzaRepo
-from application.pizza_id_generator.integer_pizza_id_generator import IntegerPizzaIdGenerator
+from application.clock.local_clock import LocalClock
+from application.pizza_id_generator import IntegerPizzaIdGenerator
+from application.pizza_repo import InMemoryPizzaRepo
+from application.use_cases import order_pizza
+from domain.exceptions import InvalidPizzaType
 
 
 @pytest.mark.parametrize("pizza_type, expected_name", [
-    (OrderPizzaUseCase.PizzaType.CHEESE, "Cheese Pizza"),
-    (OrderPizzaUseCase.PizzaType.PEPPERONI, "Pepperoni Pizza"),
-    (OrderPizzaUseCase.PizzaType.SAUSAGE, "Sausage Pizza")])
-def test_create_pizza(pizza_type, expected_name):
+    ("cheese", "Cheese Pizza"),
+    ("pepperoni", "Pepperoni Pizza"),
+    ("sausage", "Sausage Pizza")])
+def test_order_pizza(pizza_type, expected_name):
     # Arrange
     pizza_repo = InMemoryPizzaRepo()
-    input_dto = OrderPizzaInputDTO(pizza_type)
-    use_case = OrderPizzaUseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
+    input_dto = order_pizza.InputDTOFactory.build({"pizza_type": pizza_type})
+    use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
 
     # Action
     order_id = use_case.execute(input_dto)
@@ -26,12 +25,17 @@ def test_create_pizza(pizza_type, expected_name):
     assert pizza.name == expected_name
 
 
-def test_create_invalid_pizza_type():
+def test_order_invalid_pizza_with_invalid_dto():
+    # Arrange / Action / Assert
+    with pytest.raises(InvalidPizzaType):
+        order_pizza.InputDTOFactory.build({"fake": "fake"})
+
+
+def test_order_invalid_pizza_with_invalid_pizza_type():
     # Arrange
-    order_pizza_use_case = OrderPizzaUseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
+    order_pizza_use_case = order_pizza.UseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
 
     # Action / Assert
     with pytest.raises(InvalidPizzaType):
-        pizza_type = -5
-        input_dto = OrderPizzaInputDTO(pizza_type)
+        input_dto = order_pizza.InputDTOFactory.build({"pizza_type": "fake"})
         order_pizza_use_case.execute(input_dto)
