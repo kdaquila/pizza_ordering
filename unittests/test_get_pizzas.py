@@ -1,6 +1,7 @@
 from src.application.clock.local_clock import LocalClock
-from src.application.pizza_use_cases.get_pizza_use_case import GetPizzaUseCase
-from src.application.pizza_use_cases.order_pizza_use_case import OrderPizzaUseCase, PizzaType
+from application.pizza_use_cases.get_all_pizzas.get_pizzas_use_case import GetPizzaUseCase
+from application.pizza_use_cases.order_pizza.order_pizza_use_case import OrderPizzaUseCase
+from application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
 from unittests.mocks.in_memory_pizza_repo import InMemoryPizzaRepo
 from unittests.mocks.integer_pizza_id_generator import IntegerPizzaIdGenerator
 
@@ -8,14 +9,15 @@ from unittests.mocks.integer_pizza_id_generator import IntegerPizzaIdGenerator
 def test_get_all_pizzas():
     # Arrange
     pizza_repo = InMemoryPizzaRepo()
+    input_dto = OrderPizzaInputDTO(OrderPizzaUseCase.PizzaType.CHEESE)
     order_pizza_use_case = OrderPizzaUseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
-    order_pizza_use_case.execute(PizzaType.CHEESE)
-    order_pizza_use_case.execute(PizzaType.CHEESE)
-    order_pizza_use_case.execute(PizzaType.CHEESE)
+    order_pizza_use_case.execute(input_dto)
+    order_pizza_use_case.execute(input_dto)
+    order_pizza_use_case.execute(input_dto)
     get_pizza_use_case = GetPizzaUseCase(pizza_repo, LocalClock())
 
     # Action
-    pizzas = get_pizza_use_case.execute()
+    output_dto = get_pizza_use_case.execute()
 
     # Assert
-    assert len(pizzas) == 3
+    assert len(output_dto.pizzas) == 3
