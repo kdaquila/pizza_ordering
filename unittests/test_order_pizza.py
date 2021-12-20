@@ -18,10 +18,10 @@ def test_order_pizza(pizza_type, expected_name):
     use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
 
     # Action
-    order_id = use_case.execute(input_dto)
+    output_dto = use_case.execute(input_dto)
 
     # Assert
-    pizza = pizza_repo.get(order_id)
+    pizza = pizza_repo.get(output_dto.data.get("pizza_id"))
     assert pizza.name == expected_name
 
 

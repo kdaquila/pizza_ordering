@@ -4,8 +4,10 @@ from domain.pizza.base_pizza import BasePizza
 
 
 class OutputDTO:
-    def __init__(self, pizzas: [BasePizza]):
-        self.pizzas: [BasePizza] = pizzas
+    def __init__(self, pizzas: [BasePizza], status: str = "", message: str = ""):
+        self.status = status
+        self.message = message
+        self.data = {"pizzas": pizzas}
 
 
 class UseCase:
@@ -14,4 +16,4 @@ class UseCase:
         self.clock = clock
 
     def execute(self) -> OutputDTO:
-        return OutputDTO(self.pizza_repo.get_all())
+        return OutputDTO(self.pizza_repo.get_all(), "success", "")

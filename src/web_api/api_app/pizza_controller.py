@@ -32,8 +32,9 @@ class PizzaController(View):
         # TODO replace this using dependency injection
         order_pizza_use_case = order_pizza.UseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
 
-        order_pizza_use_case.execute(input_dto)
-        return HttpResponse('creating a new pizza order')
+        output_dto = order_pizza_use_case.execute(input_dto)
+        json_str = jsonpickle.encode(output_dto, unpicklable=False)
+        return HttpResponse(json_str)
 
     def put(self, request, pizza_id):
         # TODO remove this once database is being used
@@ -43,5 +44,6 @@ class PizzaController(View):
         order_pizza_use_case.execute(order_pizza_input_dto)
 
         cancel_pizza_use_case = cancel_pizza.UseCase(pizza_repo, LocalClock())
-        cancel_pizza_use_case.execute(cancel_pizza.InputDTO(pizza_id))
-        return HttpResponse(f"canceling pizza order {pizza_id}")
+        output_dto = cancel_pizza_use_case.execute(cancel_pizza.InputDTO(pizza_id))
+        json_str = jsonpickle.encode(output_dto, unpicklable=False)
+        return HttpResponse(json_str)

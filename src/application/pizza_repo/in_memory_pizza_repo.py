@@ -1,7 +1,7 @@
 from domain.exceptions import PizzaNotFound
 from application.pizza_repo.abstract_pizza_repo import AbstractPizzaRepo
 from domain.pizza.base_pizza import BasePizza
-from domain.pizza_id.pizza_id import PizzaId
+from domain.pizza_id import PizzaId
 
 
 class InMemoryPizzaRepo(AbstractPizzaRepo):

@@ -13,14 +13,14 @@ def test_cancel_pizza(pizza_type):
     # Arrange
     pizza_repo = InMemoryPizzaRepo()
     order_pizza_use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
-    pizza_id = order_pizza_use_case.execute(order_pizza.InputDTO(pizza_type))
+    output_dto = order_pizza_use_case.execute(order_pizza.InputDTO(pizza_type))
     cancel_pizza_use_case = cancel_pizza.UseCase(pizza_repo, LocalClock())
 
     # Action
-    cancel_pizza_use_case.execute(cancel_pizza.InputDTO(pizza_id))
+    cancel_pizza_use_case.execute(cancel_pizza.InputDTO(output_dto.data["pizza_id"]))
 
     # Assert
-    pizza = pizza_repo.get(pizza_id)
+    pizza = pizza_repo.get(output_dto.data["pizza_id"])
     assert pizza.is_cooking is False
 
 
@@ -31,12 +31,12 @@ def test_fail_to_cancel_pizza_because_too_late(pizza_type):
     pizza_repo = InMemoryPizzaRepo()
     order_pizza_use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
     input_dto = order_pizza.InputDTO(pizza_type)
-    pizza_id = order_pizza_use_case.execute(input_dto)
+    output_dto = order_pizza_use_case.execute(input_dto)
     cancel_pizza_use_case = cancel_pizza.UseCase(pizza_repo, LocalClock(time_shift_sec))
 
     # Action / Assert
     with pytest.raises(CannotCancelPizza):
-        cancel_pizza_use_case.execute(cancel_pizza.InputDTO(pizza_id))
+        cancel_pizza_use_case.execute(cancel_pizza.InputDTO(output_dto.data["pizza_id"]))
 
 
 @pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])

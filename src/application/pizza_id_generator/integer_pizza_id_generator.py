@@ -1,5 +1,5 @@
 from application.pizza_id_generator.abstract_pizza_id_generator import AbstractPizzaIdGenerator
-from domain.pizza_id.pizza_id import PizzaId
+from domain.pizza_id import PizzaId
 
 
 class IntegerPizzaIdGenerator(AbstractPizzaIdGenerator):

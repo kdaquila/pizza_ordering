@@ -18,4 +18,4 @@ def test_find_all_pizzas():
     output_dto = get_pizza_use_case.execute()
 
     # Assert
-    assert len(output_dto.pizzas) == 3
+    assert len(output_dto.data.get("pizzas")) == 3

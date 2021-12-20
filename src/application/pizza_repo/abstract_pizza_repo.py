@@ -1,6 +1,6 @@
 import abc
 from domain.pizza.base_pizza import BasePizza
-from domain.pizza_id.pizza_id import PizzaId
+from domain.pizza_id import PizzaId
 
 
 class AbstractPizzaRepo(abc.ABC):
