@@ -1,6 +1,6 @@
 import pytest
 
-from application.clock.local_clock import LocalClock
+from application.clock import LocalClock
 from application.pizza_id_generator import IntegerPizzaIdGenerator
 from application.pizza_repo import InMemoryPizzaRepo
 from application.use_cases import order_pizza
