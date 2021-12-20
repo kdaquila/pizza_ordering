@@ -3,7 +3,7 @@ from application.pizza_use_cases.get_all_pizzas.get_pizzas_use_case import GetPi
 from application.pizza_use_cases.order_pizza.order_pizza_use_case import OrderPizzaUseCase
 from application.pizza_use_cases.order_pizza.order_pizza_input_dto import OrderPizzaInputDTO
 from application.pizza_repo.in_memory_pizza_repo import InMemoryPizzaRepo
-from application.pizza_id.integer_pizza_id_generator import IntegerPizzaIdGenerator
+from application.pizza_id_generator.integer_pizza_id_generator import IntegerPizzaIdGenerator
 
 
 def test_get_all_pizzas():
