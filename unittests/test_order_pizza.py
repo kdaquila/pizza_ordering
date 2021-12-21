@@ -1,10 +1,9 @@
 import pytest
+from injector import Injector
 
-from application.clock import LocalClock
-from application.pizza_id_generator import IntegerPizzaIdGenerator
-from application.pizza_repo import InMemoryPizzaRepo
-from application.use_cases import order_pizza
 from domain.exceptions import InvalidPizzaType
+from unittests.container import Container
+from application.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
 
 
 @pytest.mark.parametrize("pizza_type, expected_name", [
@@ -13,29 +12,29 @@ from domain.exceptions import InvalidPizzaType
     ("sausage", "Sausage Pizza")])
 def test_order_pizza(pizza_type, expected_name):
     # Arrange
-    pizza_repo = InMemoryPizzaRepo()
-    input_dto = order_pizza.InputDTOFactory.build({"pizza_type": pizza_type})
-    use_case = order_pizza.UseCase(pizza_repo, IntegerPizzaIdGenerator(), LocalClock())
+    input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": pizza_type})
+    use_case_injector = Injector([Container])
+    order_pizza_use_case = use_case_injector.get(OrderPizzaUseCase)
 
     # Action
-    output_dto = use_case.execute(input_dto)
+    output_dto = order_pizza_use_case.execute(input_dto)
 
     # Assert
-    pizza = pizza_repo.get(output_dto.data.get("pizza_id"))
-    assert pizza.name == expected_name
+    assert output_dto.data["pizza_id"] == 1
 
 
 def test_order_invalid_pizza_with_invalid_dto():
     # Arrange / Action / Assert
     with pytest.raises(InvalidPizzaType):
-        order_pizza.InputDTOFactory.build({"fake": "fake"})
+        OrderPizzaInputDTOFactory.build({"fake": "fake"})
 
 
 def test_order_invalid_pizza_with_invalid_pizza_type():
     # Arrange
-    order_pizza_use_case = order_pizza.UseCase(InMemoryPizzaRepo(), IntegerPizzaIdGenerator(), LocalClock())
+    use_case_injector = Injector([Container])
+    order_pizza_use_case = use_case_injector.get(OrderPizzaUseCase)
 
     # Action / Assert
     with pytest.raises(InvalidPizzaType):
-        input_dto = order_pizza.InputDTOFactory.build({"pizza_type": "fake"})
+        input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": "fake"})
         order_pizza_use_case.execute(input_dto)

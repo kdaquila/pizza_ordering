@@ -1,11 +1,12 @@
 import abc
+
 from domain.pizza.base_pizza import BasePizza
 from domain.pizza_id import PizzaId
 
 
 class AbstractPizzaRepo(abc.ABC):
     @abc.abstractmethod
-    def get(self, order_id: PizzaId) -> BasePizza:
+    def get(self, pizza_id: PizzaId) -> BasePizza:
         pass
 
     @abc.abstractmethod
@@ -13,5 +14,9 @@ class AbstractPizzaRepo(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def save(self, order: BasePizza) -> None:
+    def update_one(self, pizza: BasePizza) -> None:
+        pass
+
+    @abc.abstractmethod
+    def insert_one(self, pizza: BasePizza) -> None:
         pass

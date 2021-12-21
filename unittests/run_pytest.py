@@ -1,3 +1,3 @@
 import pytest
 
-pytest.main(["--cov", "src", ".", "--cov-report",  "term-missing"])
+pytest.main(["--cov", "src", "./unittests", "--cov-report",  "term-missing"])
