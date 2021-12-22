@@ -1,4 +1,4 @@
-from injector import Module, Binder, SingletonScope, Injector
+from injector import Module, Binder, Injector, SingletonScope
 
 from core.use_cases.cancel_pizza import CancelPizzaUseCase
 from infrastructure.clock import AbstractClock, LocalClock
@@ -21,3 +21,7 @@ class Container(Module):
 
 
 container = Injector([Container])
+
+cancel_pizza_use_case = container.get(CancelPizzaUseCase)
+find_pizza_use_case = container.get(FindPizzaUseCase)
+order_pizza_use_case = container.get(OrderPizzaUseCase)

@@ -1,4 +1,6 @@
 .idea
 .pytest_cache
-src/config.py
+config.py
 *.coverage
+build/
+pizza_ordering.egg-info/

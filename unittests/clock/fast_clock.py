@@ -1,6 +1,6 @@
 import time
 
-from application.clock import AbstractClock
+from infrastructure.clock import AbstractClock
 
 
 class FastClock(AbstractClock):

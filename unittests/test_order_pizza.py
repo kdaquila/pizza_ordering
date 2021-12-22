@@ -1,9 +1,9 @@
 import pytest
 from injector import Injector
 
-from domain.exceptions import InvalidPizzaType
+from core.exceptions import InvalidPizzaType
 from unittests.container import Container
-from application.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
+from core.use_cases.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
 
 
 @pytest.mark.parametrize("pizza_type, expected_name", [

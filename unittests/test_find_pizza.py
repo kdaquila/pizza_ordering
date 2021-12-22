@@ -1,8 +1,8 @@
 from injector import Injector
 
-from application.find_pizza.find_pizza_use_case import FindPizzaUseCase
+from core.use_cases.find_pizza import FindPizzaUseCase
 from unittests.container import Container
-from application.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
+from core.use_cases.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
 
 
 def test_find_all_pizzas():
