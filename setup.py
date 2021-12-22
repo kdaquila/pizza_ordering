@@ -1,5 +1,5 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='pizza_ordering',
       version="0.0.1",
-      packages=["core", "infrastructure", "unittests", "web_api"])
+      packages=find_packages(where="."))

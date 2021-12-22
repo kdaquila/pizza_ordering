@@ -8,8 +8,10 @@ django = "*"
 pytest = "*"
 jsonpickle = "*"
 injector = "*"
-pizza-ordering = {editable = true, path = "."}
+pizza-ordering = {editable = "true", path = "."}
 pytest-cov = "*"
+requests = "*"
+autopep8 = "*"
 
 [dev-packages]
 

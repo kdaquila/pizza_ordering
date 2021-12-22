@@ -1,2 +1,0 @@
-from core.pizza_factory.abstract_pizza_factory import AbstractPizzaFactory
-from core.pizza_factory.sample_pizza_factory import SamplePizzaFactory
