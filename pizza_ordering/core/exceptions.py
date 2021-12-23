@@ -12,3 +12,15 @@ class CannotCancelPizza(Exception):
 
 class PizzaNotFound(Exception):
     pass
+
+class PizzaRepoError(Exception):
+    pass
+
+class CoreError(Exception):
+    pass
+
+class ValidationError(Exception):
+    pass
+
+class UseCaseError(Exception):
+    pass

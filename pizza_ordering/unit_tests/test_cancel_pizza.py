@@ -11,10 +11,9 @@ from .container import container
 def test_cancel_pizza(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
-    order_pizza_input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": pizza_type})
-    order_pizza_output_dto = order_pizza_use_case.execute(order_pizza_input_dto)
+    order_pizza_output_dto = order_pizza_use_case.execute(pizza_type)
 
-    cancel_pizza_input_dto = CancelPizzaInputDTOFactory.build(order_pizza_output_dto.data["pizza_id"])
+    cancel_pizza_input_dto = CancelPizzaInputDTOFactory.build(order_pizza_output_dto.pizza_id)
     cancel_pizza_use_case = container.get(CancelPizzaUseCase)
 
     # Action
@@ -28,10 +27,9 @@ def test_cancel_pizza(pizza_type):
 def test_cancel_pizza_twice(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
-    order_pizza_input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": pizza_type})
-    order_pizza_output_dto = order_pizza_use_case.execute(order_pizza_input_dto)
+    order_pizza_output_dto = order_pizza_use_case.execute(pizza_type)
 
-    cancel_pizza_input_dto = CancelPizzaInputDTOFactory.build(order_pizza_output_dto.data["pizza_id"])
+    cancel_pizza_input_dto = CancelPizzaInputDTOFactory.build(order_pizza_output_dto.pizza_id)
     cancel_pizza_use_case = container.get(CancelPizzaUseCase)
 
     # Action
@@ -46,9 +44,8 @@ def test_cancel_pizza_twice(pizza_type):
 def test_fail_to_cancel_pizza_because_too_late(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
-    order_pizza_input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": pizza_type})
-    order_pizza_output_dto = order_pizza_use_case.execute(order_pizza_input_dto)
-    pizza_id = order_pizza_output_dto.data["pizza_id"]
+    order_pizza_output_dto = order_pizza_use_case.execute(pizza_type)
+    pizza_id = order_pizza_output_dto.pizza_id
 
     cancel_pizza_input_dto = CancelPizzaInputDTOFactory.build(pizza_id)
     pizza_repo = container.get(AbstractPizzaRepo)

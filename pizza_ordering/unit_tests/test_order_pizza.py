@@ -12,15 +12,14 @@ from .container import Container
     ("sausage", "Sausage Pizza")])
 def test_order_pizza(pizza_type, expected_name):
     # Arrange
-    input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": pizza_type})
     use_case_injector = Injector([Container])
     order_pizza_use_case = use_case_injector.get(OrderPizzaUseCase)
 
     # Action
-    output_dto = order_pizza_use_case.execute(input_dto)
+    output_dto = order_pizza_use_case.execute(pizza_type)
 
     # Assert
-    assert output_dto.data["pizza_id"] == 1
+    assert output_dto.pizza_id == 1
 
 
 def test_order_invalid_pizza_with_invalid_dto():

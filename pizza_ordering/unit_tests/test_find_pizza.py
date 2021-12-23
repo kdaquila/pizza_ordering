@@ -8,11 +8,11 @@ from .container import Container
 def test_find_all_pizzas():
     # Arrange
     use_case_injector = Injector([Container])
-    input_dto = OrderPizzaInputDTOFactory.build({"pizza_type": "cheese"})
+    pizza_type = "cheese"
     order_pizza_use_case = use_case_injector.get(OrderPizzaUseCase)
-    order_pizza_use_case.execute(input_dto)
-    order_pizza_use_case.execute(input_dto)
-    order_pizza_use_case.execute(input_dto)
+    order_pizza_use_case.execute(pizza_type)
+    order_pizza_use_case.execute(pizza_type)
+    order_pizza_use_case.execute(pizza_type)
     find_pizza_use_case = use_case_injector.get(FindPizzaUseCase)
 
     # Action
