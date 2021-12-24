@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from injector import Injector
 
@@ -19,7 +21,7 @@ def test_order_pizza(pizza_type, expected_name):
     output_dto = order_pizza_use_case.execute(pizza_type)
 
     # Assert
-    assert output_dto.pizza_id == 1
+    uuid.UUID(output_dto.pizza_id)
 
 
 def test_order_invalid_pizza_with_invalid_pizza_type():

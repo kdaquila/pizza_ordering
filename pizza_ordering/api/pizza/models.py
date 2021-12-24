@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Pizza(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.UUIDField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField()
     start_time = models.DateTimeField(null=True)

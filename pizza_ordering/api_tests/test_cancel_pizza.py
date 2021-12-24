@@ -1,5 +1,6 @@
 import requests
 
+from pizza_ordering.infrastructure.id_factory import UUIDFactory
 from pizza_ordering import config
 
 
@@ -19,7 +20,9 @@ def test_cancel_valid_pizza():
 
 def test_cancel_invalid_pizza():
     # Action
-    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/100")
+    uuid_factory = UUIDFactory()
+    new_id = uuid_factory.create_new_id()
+    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/{new_id}")
 
     # Assert
     assert cancel_pizza_response.ok

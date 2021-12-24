@@ -16,7 +16,7 @@ def test_find_all_pizzas():
     find_pizza_use_case = use_case_injector.get(FindPizzaUseCase)
 
     # Action
-    output_dto = find_pizza_use_case.execute()
+    pizzas = find_pizza_use_case.execute()
 
     # Assert
-    assert len(output_dto.pizzas) == 3
+    assert len(pizzas) == 3

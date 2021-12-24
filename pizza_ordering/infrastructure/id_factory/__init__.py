@@ -1,2 +1,3 @@
-from .abstract_id_factory import AbstractIdFactory
-from .integer_id_factory import IntegerIdFactory
+from pizza_ordering.infrastructure.id_factory.abstract_id_factory import AbstractIdFactory
+from pizza_ordering.infrastructure.id_factory.integer_id_factory import IntegerIdFactory
+from pizza_ordering.infrastructure.id_factory.uuid_factory import UUIDFactory

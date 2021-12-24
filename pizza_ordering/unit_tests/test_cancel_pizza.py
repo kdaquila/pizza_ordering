@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 
 from pizza_ordering.core.exceptions import CannotCancelPizza, PizzaNotFound
@@ -17,7 +19,7 @@ def test_cancel_pizza(pizza_type):
     cancel_pizza_use_case = container.get(CancelPizzaUseCase)
 
     # Action
-    cancel_pizza_use_case.execute(pizza_id)
+    cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
     # Assert
     pass
@@ -32,9 +34,9 @@ def test_cancel_pizza_twice(pizza_type):
     cancel_pizza_use_case = container.get(CancelPizzaUseCase)
 
     # Action / Assert
-    cancel_pizza_use_case.execute(pizza_id)
+    cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
     with pytest.raises(CannotCancelPizza):
-        cancel_pizza_use_case.execute(pizza_id)
+        cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
 
 @pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])
@@ -48,7 +50,7 @@ def test_fail_to_cancel_pizza_because_too_late(pizza_type):
 
     # Action / Assert
     with pytest.raises(CannotCancelPizza):
-        cancel_pizza_use_case.execute(pizza_id)
+        cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
 
 @pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])

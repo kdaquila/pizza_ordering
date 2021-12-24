@@ -1,1 +1,3 @@
-PizzaId = int
+import uuid
+
+PizzaId = uuid.UUID
