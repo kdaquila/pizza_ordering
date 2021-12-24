@@ -2,6 +2,7 @@ from pizza_ordering.core.exceptions import PizzaNotFound
 from . import AbstractPizzaRepo
 from pizza_ordering.core.entities.pizza import BasePizza
 from pizza_ordering.core.pizza_id import PizzaId
+from typing import List
 
 
 class InMemoryPizzaRepo(AbstractPizzaRepo):
@@ -12,9 +13,9 @@ class InMemoryPizzaRepo(AbstractPizzaRepo):
         try:
             return next(pizza for pizza in self.pizzas if pizza.pizza_id == pizza_id)
         except StopIteration:
-            raise PizzaNotFound
+            raise PizzaNotFound("Invalid pizza id")
 
-    def get_all(self) -> list:
+    def get_all(self) -> List[BasePizza]:
         return self.pizzas
 
     def update_one(self, pizza: BasePizza) -> None:

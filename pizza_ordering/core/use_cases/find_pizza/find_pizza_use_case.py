@@ -12,8 +12,5 @@ class FindPizzaUseCase:
         self.clock = clock
 
     def execute(self) -> FindPizzaOutputDTO:
-        try:
-            pizzas = self.pizza_repo.get_all()
-            return FindPizzaOutputDTO(pizzas, status="success", message="")
-        except Exception:
-            return FindPizzaOutputDTO(None, status="error", message="Internal server error.")
+        pizzas = self.pizza_repo.get_all()
+        return FindPizzaOutputDTO(pizzas)

@@ -1,7 +1,3 @@
-class InvalidPizzaId(Exception):
-    pass
-
-
 class InvalidPizzaType(Exception):
     pass
 
@@ -13,14 +9,10 @@ class CannotCancelPizza(Exception):
 class PizzaNotFound(Exception):
     pass
 
-class PizzaRepoError(Exception):
-    pass
-
-class CoreError(Exception):
-    pass
 
 class ValidationError(Exception):
     pass
 
-class UseCaseError(Exception):
+
+class PizzaNotCooking(Exception):
     pass

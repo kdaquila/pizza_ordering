@@ -7,6 +7,7 @@ from pizza_ordering.core.pizza_repo import AbstractPizzaRepo, InMemoryPizzaRepo
 from pizza_ordering.core.pizza_factory import AbstractPizzaFactory, SamplePizzaFactory
 from pizza_ordering.infrastructure.clock import AbstractClock, LocalClock
 from pizza_ordering.infrastructure.id_factory import AbstractIdFactory, IntegerIdFactory
+from pizza_ordering.infrastructure.pizza_repo.django_orm_pizza_repo import DjangoORMPizzaRepo
 
 
 class Container(Module):
@@ -14,7 +15,7 @@ class Container(Module):
         binder.bind(OrderPizzaUseCase, scope=SingletonScope)
         binder.bind(FindPizzaUseCase, scope=SingletonScope)
         binder.bind(CancelPizzaUseCase, scope=SingletonScope)
-        binder.bind(AbstractPizzaRepo, to=InMemoryPizzaRepo, scope=SingletonScope)
+        binder.bind(AbstractPizzaRepo, to=DjangoORMPizzaRepo, scope=SingletonScope)
         binder.bind(AbstractClock, to=LocalClock, scope=SingletonScope)
         binder.bind(AbstractIdFactory, to=IntegerIdFactory, scope=SingletonScope)
         binder.bind(AbstractPizzaFactory, to=SamplePizzaFactory, scope=SingletonScope)

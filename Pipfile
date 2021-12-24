@@ -12,6 +12,9 @@ pizza-ordering = {editable = "true", path = "."}
 pytest-cov = "*"
 requests = "*"
 autopep8 = "*"
+psycopg2 = "*"
+ipython = "*"
+pytz = "*"
 
 [dev-packages]
 

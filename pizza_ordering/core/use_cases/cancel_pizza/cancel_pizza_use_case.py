@@ -1,9 +1,9 @@
 from injector import inject
 
+from pizza_ordering.core.pizza_id import PizzaId
 from pizza_ordering import config
-from . import CancelPizzaInputDTO, CancelPizzaOutputDTO
 from pizza_ordering.core.pizza_repo import AbstractPizzaRepo
-from pizza_ordering.core.exceptions import PizzaNotFound
+from pizza_ordering.core.exceptions import PizzaNotCooking, CannotCancelPizza
 from pizza_ordering.infrastructure.clock import AbstractClock
 
 
@@ -13,23 +13,15 @@ class CancelPizzaUseCase:
         self.clock = clock
         self.pizza_repo = pizza_repo
 
-    def execute(self, input_dto: CancelPizzaInputDTO) -> CancelPizzaOutputDTO:
+    def execute(self, pizza_id: PizzaId) -> None:
         current_time = self.clock.current_unix_time_sec()
-        try:
-            pizza = self.pizza_repo.get(input_dto.pizza_id)
-            start_time = pizza.start_time
-            elapsed_time = current_time - start_time
-            cancel_order_interval_sec = config.cancel_order_interval_sec
-            if pizza.is_cooking is False:
-                return CancelPizzaOutputDTO(status="fail", message=f"Pizza {input_dto.pizza_id} is already stopped")
-            if elapsed_time > cancel_order_interval_sec:
-                return CancelPizzaOutputDTO(status="fail", message=f"Pizza {input_dto.pizza_id} cannot be stopped")
-
-            pizza.stop_cooking_at(current_time)
-            self.pizza_repo.update_one(pizza)
-            return CancelPizzaOutputDTO(status="success", message=f"Pizza {input_dto.pizza_id} was stopped")
-        except PizzaNotFound:
-            return CancelPizzaOutputDTO(status="fail", message=f"Pizza {input_dto.pizza_id} could not be found")
-        except Exception:
-            return CancelPizzaOutputDTO(status="error", message="Internal Server Error")
-        
+        pizza = self.pizza_repo.get(pizza_id)
+        start_time = pizza.start_time
+        elapsed_time = current_time - start_time
+        cancel_order_interval_sec = config.cancel_order_interval_sec
+        if pizza.is_cooking is False:
+            raise CannotCancelPizza("This pizza is not currently being cooked")
+        if elapsed_time > cancel_order_interval_sec:
+            raise CannotCancelPizza("This pizza can no longer be cancelled")
+        pizza.stop_cooking_at(current_time)
+        self.pizza_repo.update_one(pizza)

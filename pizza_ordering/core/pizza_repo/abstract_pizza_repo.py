@@ -2,6 +2,7 @@ import abc
 
 from pizza_ordering.core.entities.pizza import BasePizza
 from pizza_ordering.core.pizza_id import PizzaId
+from typing import List
 
 
 class AbstractPizzaRepo(abc.ABC):
@@ -10,7 +11,7 @@ class AbstractPizzaRepo(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get_all(self) -> BasePizza:
+    def get_all(self) -> List[BasePizza]:
         pass
 
     @abc.abstractmethod

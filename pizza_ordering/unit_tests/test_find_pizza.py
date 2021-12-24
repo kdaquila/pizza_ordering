@@ -1,7 +1,7 @@
 from injector import Injector
 
 from pizza_ordering.core.use_cases.find_pizza import FindPizzaUseCase
-from pizza_ordering.core.use_cases.order_pizza import OrderPizzaInputDTOFactory, OrderPizzaUseCase
+from pizza_ordering.core.use_cases.order_pizza import OrderPizzaUseCase
 from .container import Container
 
 
@@ -19,4 +19,4 @@ def test_find_all_pizzas():
     output_dto = find_pizza_use_case.execute()
 
     # Assert
-    assert len(output_dto.data.get("pizzas")) == 3
+    assert len(output_dto.pizzas) == 3

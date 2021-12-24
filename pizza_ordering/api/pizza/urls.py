@@ -1,5 +1,5 @@
 from django.urls import path
-from api.pizza_controller import PizzaController
+from pizza_ordering.api.pizza.pizza_controller import PizzaController
 
 urlpatterns = [
     path('pizza', PizzaController.as_view(), name='index'),
