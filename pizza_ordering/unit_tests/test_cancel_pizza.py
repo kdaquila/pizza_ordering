@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from pizza_ordering.core.exceptions import CannotCancelPizza, PizzaNotFound
+from pizza_ordering.core.exceptions import CannotCancelPizza, PizzaNotFound, PizzaNotCooking
 from pizza_ordering.core.use_cases.cancel_pizza import CancelPizzaUseCase
 from pizza_ordering.core.use_cases.order_pizza import OrderPizzaUseCase
 from pizza_ordering.core.pizza_repo import AbstractPizzaRepo
@@ -35,7 +35,7 @@ def test_cancel_pizza_twice(pizza_type):
 
     # Action / Assert
     cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
-    with pytest.raises(CannotCancelPizza):
+    with pytest.raises(PizzaNotCooking):
         cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
 

@@ -1,5 +1,5 @@
-from uuid import UUID
 from typing import List
+from uuid import UUID
 
 from injector import inject
 
@@ -18,10 +18,9 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
     def get(self, pizza_id: UUID) -> BasePizza:
         try:
             pizza = Pizza.objects.get(id=pizza_id)
-            start_time = self.time_converter.get_timestamp_from_datetime(pizza.start_time) if pizza.start_time else None
-            stop_time = self.time_converter.get_timestamp_from_datetime(pizza.stop_time) if pizza.stop_time else None
-            return BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description, start_time=start_time,
-                             stop_time=stop_time)
+            return BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description,
+                             start_time=pizza.start_time,
+                             stop_time=pizza.stop_time)
         except Pizza.DoesNotExist:
             raise PizzaNotFound("Could not find the pizza")
 
@@ -29,32 +28,25 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
         pizzas = Pizza.objects.all()
         output = []
         for pizza in pizzas:
-            start_time = self.time_converter.get_timestamp_from_datetime(pizza.start_time) if pizza.start_time else None
-            stop_time = self.time_converter.get_timestamp_from_datetime(pizza.stop_time) if pizza.stop_time else None
             output.append(
-                BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description, start_time=start_time,
-                          stop_time=stop_time))
+                BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description,
+                          start_time=pizza.start_time,
+                          stop_time=pizza.stop_time))
         return output
 
     def update_one(self, pizza: BasePizza) -> None:
         stored_pizza = Pizza.objects.get(id=pizza.pizza_id)
         stored_pizza.name = pizza.name
         stored_pizza.description = pizza.description
-
-        start_time = self.time_converter.get_time_from_timestamp(pizza.start_time) if pizza.start_time else None
-        stored_pizza.start_time = start_time
-
-        stop_time = self.time_converter.get_time_from_timestamp(pizza.stop_time) if pizza.stop_time else None
-        stored_pizza.stop_time = stop_time
+        stored_pizza.start_time = pizza.start_time
+        stored_pizza.stop_time = pizza.stop_time
         stored_pizza.save()
 
     def insert_one(self, pizza: BasePizza) -> None:
-        start_time = self.time_converter.get_time_from_timestamp(pizza.start_time) if pizza.start_time else None
-        stop_time = self.time_converter.get_time_from_timestamp(pizza.stop_time) if pizza.stop_time else None
         new_pizza = Pizza(
             id=pizza.pizza_id,
             name=pizza.name,
             description=pizza.description,
-            start_time=start_time,
-            stop_time=stop_time)
+            start_time=pizza.start_time,
+            stop_time=pizza.stop_time)
         new_pizza.save()

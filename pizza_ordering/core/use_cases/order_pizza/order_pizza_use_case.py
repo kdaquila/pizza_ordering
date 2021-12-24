@@ -16,7 +16,7 @@ class OrderPizzaUseCase:
         self.pizza_factory = pizza_factory
 
     def execute(self, pizza_type: str) -> PizzaIdDTO:
-        current_time = self.clock.current_unix_time_sec()
+        current_time = self.clock.current_local_time()
         new_pizza = self.pizza_factory.build(pizza_type)
         new_pizza.start_cooking_at(current_time)
         self.pizza_repo.insert_one(new_pizza)

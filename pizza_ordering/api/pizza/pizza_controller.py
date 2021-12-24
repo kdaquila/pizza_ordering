@@ -16,7 +16,7 @@ class PizzaController(View):
             response_obj["status"] = "success"
             response_obj["data"] = find_pizza_use_case.execute()
 
-        except Exception:
+        except Exception as err:
             response_obj["status"] = "error"
 
         return json_response(response_obj)
