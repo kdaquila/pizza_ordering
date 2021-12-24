@@ -1,4 +1,8 @@
 .idea
 .pytest_cache
-*config.py
+*.pyc
+pizza_ordering/config.py
 *.coverage
+build/
+dist/
+pizza_ordering.egg-info/
