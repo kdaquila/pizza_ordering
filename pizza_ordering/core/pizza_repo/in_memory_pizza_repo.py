@@ -1,7 +1,8 @@
+from uuid import UUID
+
 from pizza_ordering.core.exceptions import PizzaNotFound
 from . import AbstractPizzaRepo
 from pizza_ordering.core.entities.pizza import BasePizza
-from pizza_ordering.core.pizza_id import PizzaId
 from typing import List
 
 
@@ -9,7 +10,7 @@ class InMemoryPizzaRepo(AbstractPizzaRepo):
     def __init__(self):
         self.pizzas: list = []
 
-    def get(self, pizza_id: PizzaId) -> BasePizza:
+    def get(self, pizza_id: UUID) -> BasePizza:
         try:
             return next(pizza for pizza in self.pizzas if pizza.pizza_id == pizza_id)
         except StopIteration:

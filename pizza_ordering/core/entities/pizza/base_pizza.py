@@ -1,10 +1,10 @@
-from pizza_ordering.core.pizza_id import PizzaId
+from uuid import UUID
 
 
 class BasePizza:
-    def __init__(self, pizza_id: PizzaId, name: str, description: str, start_time: int = None,
+    def __init__(self, pizza_id: UUID, name: str, description: str, start_time: int = None,
                  stop_time: int = None) -> None:
-        self.pizza_id: PizzaId = pizza_id
+        self.pizza_id: UUID = pizza_id
         self.name: str = name
         self.description: str = description
         self.start_time: int = start_time

@@ -1,3 +1,4 @@
+from uuid import UUID
 from typing import List
 
 from injector import inject
@@ -5,7 +6,6 @@ from injector import inject
 from pizza.models import Pizza
 from pizza_ordering.core.entities.pizza import BasePizza
 from pizza_ordering.core.exceptions import PizzaNotFound
-from pizza_ordering.core.pizza_id import PizzaId
 from pizza_ordering.core.pizza_repo import AbstractPizzaRepo
 from pizza_ordering.infrastructure.time_convert import TimeConverter
 
@@ -15,7 +15,7 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
     def __init__(self, time_converter: TimeConverter):
         self.time_converter = time_converter
 
-    def get(self, pizza_id: PizzaId) -> BasePizza:
+    def get(self, pizza_id: UUID) -> BasePizza:
         try:
             pizza = Pizza.objects.get(id=pizza_id)
             start_time = self.time_converter.get_timestamp_from_datetime(pizza.start_time) if pizza.start_time else None

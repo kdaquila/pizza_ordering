@@ -1,9 +1,8 @@
 import abc
-
-from pizza_ordering.core.pizza_id import PizzaId
+from uuid import UUID
 
 
 class AbstractIdFactory(abc.ABC):
     @abc.abstractmethod
-    def create_new_id(self) -> PizzaId:
+    def create_new_id(self) -> UUID:
         pass

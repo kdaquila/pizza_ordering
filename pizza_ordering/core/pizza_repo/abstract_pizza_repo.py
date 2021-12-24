@@ -1,13 +1,13 @@
 import abc
+from uuid import UUID
 
 from pizza_ordering.core.entities.pizza import BasePizza
-from pizza_ordering.core.pizza_id import PizzaId
 from typing import List
 
 
 class AbstractPizzaRepo(abc.ABC):
     @abc.abstractmethod
-    def get(self, pizza_id: PizzaId) -> BasePizza:
+    def get(self, pizza_id: UUID) -> BasePizza:
         pass
 
     @abc.abstractmethod

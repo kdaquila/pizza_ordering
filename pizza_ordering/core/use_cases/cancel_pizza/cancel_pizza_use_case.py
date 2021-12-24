@@ -1,6 +1,7 @@
+from uuid import UUID
+
 from injector import inject
 
-from pizza_ordering.core.pizza_id import PizzaId
 from pizza_ordering import config
 from pizza_ordering.core.pizza_repo import AbstractPizzaRepo
 from pizza_ordering.core.exceptions import PizzaNotCooking, CannotCancelPizza
@@ -13,7 +14,7 @@ class CancelPizzaUseCase:
         self.clock = clock
         self.pizza_repo = pizza_repo
 
-    def execute(self, pizza_id: PizzaId) -> None:
+    def execute(self, pizza_id: UUID) -> None:
         current_time = self.clock.current_unix_time_sec()
         pizza = self.pizza_repo.get(pizza_id)
         start_time = pizza.start_time
