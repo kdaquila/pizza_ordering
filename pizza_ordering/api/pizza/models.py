@@ -7,6 +7,7 @@ class Pizza(models.Model):
     description = models.TextField()
     start_time = models.DateTimeField(null=True)
     stop_time = models.DateTimeField(null=True)
+    status = models.CharField(max_length=100)
 
     class Meta:
         db_table = "pizza"

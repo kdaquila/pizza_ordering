@@ -20,5 +20,5 @@ class FindPizzaUseCase:
         output = []
         for pizza in pizzas:
             output.append(PizzaDTO(pizza_id=str(pizza.pizza_id), name=pizza.name, description=pizza.description,
-                                   start_time=pizza.start_time, stop_time=pizza.stop_time))
+                                   status=pizza.status, start_time=pizza.start_time, stop_time=pizza.stop_time))
         return output

@@ -19,8 +19,7 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
         try:
             pizza = Pizza.objects.get(id=pizza_id)
             return BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description,
-                             start_time=pizza.start_time,
-                             stop_time=pizza.stop_time)
+                             start_time=pizza.start_time, stop_time=pizza.stop_time, status=pizza.status)
         except Pizza.DoesNotExist:
             raise PizzaNotFound("Could not find the pizza")
 
@@ -30,8 +29,7 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
         for pizza in pizzas:
             output.append(
                 BasePizza(pizza_id=pizza.id, name=pizza.name, description=pizza.description,
-                          start_time=pizza.start_time,
-                          stop_time=pizza.stop_time))
+                          start_time=pizza.start_time, stop_time=pizza.stop_time, status=pizza.status))
         return output
 
     def update_one(self, pizza: BasePizza) -> None:
@@ -40,6 +38,7 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
         stored_pizza.description = pizza.description
         stored_pizza.start_time = pizza.start_time
         stored_pizza.stop_time = pizza.stop_time
+        stored_pizza.status = pizza.status
         stored_pizza.save()
 
     def insert_one(self, pizza: BasePizza) -> None:
@@ -48,5 +47,6 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
             name=pizza.name,
             description=pizza.description,
             start_time=pizza.start_time,
-            stop_time=pizza.stop_time)
+            stop_time=pizza.stop_time,
+            status=pizza.status)
         new_pizza.save()

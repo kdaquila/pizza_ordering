@@ -3,12 +3,17 @@ import json
 from django.views import View
 
 from pizza_ordering.core.exceptions import ValidationError, PizzaNotFound, CannotCancelPizza
-from .container import order_pizza_use_case, find_pizza_use_case, cancel_pizza_use_case
-from .json_response import json_response
+from pizza.container import order_pizza_use_case, find_pizza_use_case
+from pizza.json_response import json_response
 
 
 class PizzaController(View):
     def get(self, request):
+        """
+        This handles the route GET /api/pizza. It will return all pizzas.
+        :param request:
+        :return:
+        """
         response_obj = {"status": "",
                         "message": "",
                         "data": None}
@@ -22,6 +27,11 @@ class PizzaController(View):
         return json_response(response_obj)
 
     def post(self, request):
+        """
+        This handles the route POST /api/pizza. It allows a pizza to be ordered.
+        :param request:
+        :return:
+        """
         response_obj = {"status": "",
                         "message": "",
                         "data": None}
@@ -35,26 +45,6 @@ class PizzaController(View):
             response_obj["status"] = "success"
 
         except ValidationError as err:
-            response_obj["status"] = "fail"
-            response_obj["message"] = str(err)
-
-        except Exception as err:
-            response_obj["status"] = "error"
-            response_obj["message"] = "Internal server error"
-
-        return json_response(response_obj)
-
-    def put(self, request, pizza_id=None):
-        response_obj = {"status": "",
-                        "message": "",
-                        "data": None}
-        try:
-            if pizza_id is None:
-                raise ValidationError("Pizza type is required")
-            cancel_pizza_use_case.execute(pizza_id)
-            response_obj["status"] = "success"
-
-        except (PizzaNotFound, CannotCancelPizza) as err:
             response_obj["status"] = "fail"
             response_obj["message"] = str(err)
 
