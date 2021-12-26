@@ -1,14 +1,21 @@
 @use "../global-scss/fonts";
 @use "../global-scss/colors";
 @use "../global-scss/sizes";
+@use "sass:map";
 
 .menuItem {
     display: flex;
     margin-bottom: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
+    padding: 0;
+    border: none;
 
     @media screen and (max-width: sizes.$sm) {
         flex-direction: column;
+    }
+
+    &:hover {
+        box-shadow: 0 0 16px 0 map.get(colors.$sandstone-palette, "70");
     }
 }
 

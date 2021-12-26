@@ -3,7 +3,7 @@ import styles from "./MenuItem.module.scss";
 
 export function MenuItem() {
   return (
-    <div className={styles.menuItem}>
+    <button className={styles.menuItem}>
       <div className={styles.menuItem__imgArea}>
         <img className={styles.menuItem__img} src={img1} alt="cheese pizza" />
       </div>
@@ -14,6 +14,6 @@ export function MenuItem() {
           one(11&quot;)
         </h3>
       </div>
-    </div>
+    </button>
   );
 }
