@@ -1,0 +1,15 @@
+@use "../global-scss/colors";
+@use "../global-scss/fonts";
+
+.title {
+    @include fonts.cursive-light("6xl");
+    @include colors.text-sandstone("2");
+    padding: 0 0.2em;
+    background: url("../../public/img/accent_underline.svg") center 80%/contain  no-repeat border-box;
+}
+
+.subtitle {
+    @include fonts.sans("sm");
+    @include colors.text-gray("3");
+    text-align: center;
+}

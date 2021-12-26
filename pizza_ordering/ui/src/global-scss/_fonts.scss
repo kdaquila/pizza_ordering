@@ -4,7 +4,7 @@
 $cursive: 'Kalam', cursive;
 $sans-serif: 'Montserrat', sans-serif;
 
-$serif-line-height: 1.0;
+$cursive-line-height: 1.0;
 $sans-line-height: 1.5;
 
 $font-sizes: (
@@ -32,13 +32,13 @@ $font-sizes: (
       .cursive-#{$size-index}#{map.get($breakpoint-data, "suffix")} {
         font-family: $cursive;
         font-size: $size-px;
-        line-height: $serif-line-height;
+        line-height: $cursive-line-height;
       }
       .cursive-light-#{$size-index}#{map.get($breakpoint-data, "suffix")} {
         font-family: $cursive;
         font-weight: 300;
         font-size: $size-px;
-        line-height: $serif-line-height;
+        line-height: $cursive-line-height;
       }
       .sans-#{$size-index}#{map.get($breakpoint-data, "suffix")} {
         font-family: $sans-serif;

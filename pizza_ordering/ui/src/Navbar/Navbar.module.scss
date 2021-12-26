@@ -2,7 +2,7 @@
 @use "../global-scss/colors";
 
 .background {
-    @include colors.bg-copper("98");
+    @include colors.bg-sandstone("98");
 }
 
 .logo {
