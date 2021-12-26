@@ -12,10 +12,6 @@
     &:hover {
         @include colors.text-sandstone("3");
     }
-
-    &:active {
-        @include colors.text-sandstone("2");
-    }
 }
 
 .logo__link {
@@ -29,10 +25,6 @@
 
     &:hover {
         @include colors.text-sandstone("3");
-    }
-
-    &:active {
-        @include colors.text-sandstone("2");
     }
 }
 

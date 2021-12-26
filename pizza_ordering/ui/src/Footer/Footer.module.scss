@@ -1,0 +1,32 @@
+@use "../global-scss/fonts";
+@use "../global-scss/colors";
+@use "../global-scss/sizes";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.footerItem {
+  @include fonts.sans("sm");
+  @include colors.text-gray("2");
+  margin: 1rem 0;
+  padding: 0 1rem;
+  list-style: none;
+}
+
+.footerItem--divider {
+  @extend .footerItem;
+  border-right: 1px solid gray;
+}
+
+.footerItem__link {
+    text-decoration: none;
+    @include colors.text-gray("2");
+
+    &:hover{
+        @include colors.text-gray("3");
+    }
+}
