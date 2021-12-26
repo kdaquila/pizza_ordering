@@ -1,0 +1,12 @@
+@use "../global-scss/sizes";
+
+.menuItemSet {
+    width: 80%;
+
+    @media screen and (min-width: sizes.$sm) {
+        width: 100%;
+    }
+    @media screen and (min-width: sizes.$lg) {
+        width: 60%;
+    }
+}
