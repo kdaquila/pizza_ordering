@@ -1,0 +1,150 @@
+@use "sass:map";
+$sandstone-palette: (
+   "5": hsl(25,15%,5%),
+  "10": hsl(25,15%,10%),
+  "15": hsl(25,15%,15%),
+  "20": hsl(25,15%,20%),
+  "25": hsl(25,15%,25%),
+  "30": hsl(25,15%,30%),
+  "35": hsl(25,15%,35%),
+  "40": hsl(25,15%,40%),
+  "45": hsl(25,15%,45%),
+  "55": hsl(25,15%,55%),
+  "60": hsl(25,15%,60%),
+  "65": hsl(25,15%,65%),
+  "70": hsl(25,15%,70%),
+  "75": hsl(25,15%,75%),
+  "80": hsl(25,15%,80%),
+  "85": hsl(25,15%,85%),
+  "90": hsl(25,15%,90%),
+  "95": hsl(25,15%,95%),
+  "98": hsl(25,15%,98%),
+);
+$copper-palette: (
+   "5": hsl(15,33%,5%),
+  "10": hsl(15,33%,10%),
+  "15": hsl(15,33%,15%),
+  "20": hsl(15,33%,20%),
+  "25": hsl(15,33%,25%),
+  "30": hsl(15,33%,30%),
+  "35": hsl(15,33%,35%),
+  "40": hsl(15,33%,40%),
+  "45": hsl(15,33%,45%),
+  "50": hsl(15,33%,50%),
+  "55": hsl(15,33%,55%),
+  "60": hsl(15,33%,60%),
+  "65": hsl(15,33%,65%),
+  "70": hsl(15,33%,70%),
+  "75": hsl(15,33%,75%),
+  "80": hsl(15,33%,80%),
+  "85": hsl(15,33%,85%),
+  "90": hsl(15,33%,90%),
+  "95": hsl(15,33%,95%),
+  "98": hsl(15,33%,98%),
+);
+$gray-palette: (
+  "5": hsl(34,0%,5%),
+  "10": hsl(34,0%,10%),
+  "15": hsl(34,0%,15%),
+  "20": hsl(34,0%,20%),
+  "25": hsl(34,0%,25%),
+  "30": hsl(34,0%,30%),
+  "35": hsl(34,0%,35%),
+  "40": hsl(34,0%,40%),
+  "45": hsl(34,0%,45%),
+  "50": hsl(34,0%,50%),
+  "55": hsl(34,0%,55%),
+  "60": hsl(34,0%,60%),
+  "65": hsl(34,0%,65%),
+  "70": hsl(34,0%,70%),
+  "75": hsl(34,0%,75%),
+  "80": hsl(34,0%,80%),
+  "85": hsl(34,0%,85%),
+  "90": hsl(34,0%,90%),
+  "95": hsl(34,0%,95%),
+);
+$base-colors: (
+  "copper": $copper-palette,
+  "sandstone": $sandstone-palette,
+  "gray": $gray-palette,
+);
+$font-colors: (
+  "sandstone": (
+    "1": map.get($sandstone-palette, "20"),
+    "2": map.get($sandstone-palette, "40"),
+    "3": map.get($sandstone-palette, "60"),
+    "4": map.get($sandstone-palette, "75"),
+    "5": map.get($sandstone-palette, "95")
+  ),
+  "copper": (
+    "1": map.get($copper-palette, "20"),
+    "2": map.get($copper-palette, "40"),
+    "3": map.get($copper-palette, "60"),
+    "4": map.get($copper-palette, "75"),
+    "5": map.get($copper-palette, "95")
+  ),
+  "gray": (
+    "1": map.get($gray-palette, "20"),
+    "2": map.get($gray-palette, "40"),
+    "3": map.get($gray-palette, "60"),
+    "4": map.get($gray-palette, "75"),
+    "5": map.get($gray-palette, "95")
+  ),
+);
+
+// generate base-color classes
+@each $hue_name, $color_map in $base-colors {
+  @each $lightness, $color_value in $color_map {
+    .#{$hue_name}-#{$lightness} {
+      color: $color_value;
+    }
+  }
+}
+
+// generate font-color classes
+@each $hue_name, $color_map in $font-colors {
+  @each $index, $color_value in $color_map {
+    .text-#{$hue_name}-#{$index} {
+      color: $color_value;
+    }
+  }
+}
+
+// generate background-color classes
+@each $hue_name, $color_map in $base-colors {
+  @each $index, $color_value in $color_map {
+    .bg-#{$hue_name}-#{$index} {
+      background-color: $color_value;
+    }
+  }
+}
+
+// font-color mixins
+@mixin text-copper($level: "2") {
+  color: map.get(map.get($font-colors, "copper"), $level);
+}
+@mixin text-sandstone($level: "2") {
+  color: map.get(map.get($font-colors, "sandstone"), $level);
+}
+
+// border color mixins
+@mixin border-blue($level: "5") {
+  border-color: map.get($orange-palette, $level) ;
+}
+
+@mixin border-brown($level: "5") {
+  border-color: map.get($brown-palette, $level) ;
+}
+
+@mixin border-gray($level: "5") {
+  border-color: map.get($gray-palette, $level) ;
+}
+
+// background-color mixins
+@mixin bg-copper($level:"50") {
+  background-color: map.get($copper-palette, $level);
+}
+
+@mixin bg-sandstone($level:"50") {
+  background-color: map.get($sandstone-palette, $level);
+}
