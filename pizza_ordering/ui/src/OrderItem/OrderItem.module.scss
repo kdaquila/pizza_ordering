@@ -1,0 +1,24 @@
+@use "../global-scss/fonts";
+@use "../global-scss/colors";
+
+.orderItem {
+    @include colors.bg-sandstone("98");
+    padding: 2rem;
+    margin: 0 1rem 1rem 0;
+}
+
+.title {
+    @include fonts.cursive("2xl");
+    @include colors.text-sandstone("2");
+    margin-bottom: 1rem;
+}
+
+.sectionName {
+    @include fonts.sans("md");
+    @include colors.text-gray("2");
+}
+
+.sectionValue {
+    @include fonts.sans("xs");
+    @include colors.text-gray("2");
+}

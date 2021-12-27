@@ -1,0 +1,27 @@
+@use "../global-scss/colors";
+@use "../global-scss/fonts";
+@use "sass:map";
+
+.button {
+    border: 1px solid map.get(colors.$sandstone-palette, "30");
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 0.2rem 1rem;
+    display: block;
+    margin: 0 1rem 1rem 0;
+    width: 100%;
+
+    &:hover {
+        @include colors.bg-sandstone("90");
+    }
+}
+
+.button--disabled {
+    border: 1px solid map.get(colors.$gray-palette, "80");
+    cursor: default;
+    color:  map.get(colors.$gray-palette, "80");
+
+    &:hover {
+        background-color: transparent;
+    }
+}

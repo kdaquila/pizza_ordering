@@ -1,0 +1,27 @@
+@use "../global-scss/colors";
+@use "../global-scss/fonts";
+
+.button {
+    @include colors.bg-sandstone("40");
+    @include fonts.sans("md");
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.2rem 1rem;
+    width: 100%;
+    display: block;
+    margin: 0 1rem 1rem 0;
+
+    &:hover {
+        @include colors.bg-sandstone("60");
+    }
+}
+
+.button--disabled {
+    @include colors.bg-gray("80");
+    cursor: default;
+
+    &:hover {
+        @include colors.bg-gray("80");
+    }
+}
