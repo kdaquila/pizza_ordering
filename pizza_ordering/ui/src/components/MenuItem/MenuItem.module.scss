@@ -7,7 +7,7 @@
     display: flex;
     align-items: stretch;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.25);
     padding: 0;
     border: none;
 
@@ -16,7 +16,8 @@
     }
 
     &:hover {
-        box-shadow: 0 0 16px 0 map.get(colors.$sandstone-palette, "70");
+        box-shadow: 0 0 16px 0 map.get(colors.$sandstone-palette, "30");
+        outline: 1px solid map.get(colors.$sandstone-palette, "40");
     }
 }
 

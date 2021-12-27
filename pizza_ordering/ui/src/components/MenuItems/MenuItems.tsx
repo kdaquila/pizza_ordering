@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { MenuItem } from "../MenuItem/MenuItem";
 import styles from "./MenuItems.module.scss";
 
+import cheesePizzaImg from "../../img/cheese_pizza.png";
+import pepperoniPizzaImg from "../../img/pepperoni_pizza.png";
+import veggiePizzaImg from "../../img/veggie_pizza.png";
+
 const orderUrl = "http://127.0.0.1:8000/api/pizza"
 const PizzaData = [
   {
@@ -12,7 +16,8 @@ const PizzaData = [
       "Thin crust with mozzarella cheese and tomato sauce. Serves one (11&quot;))",
     status: "cooking",
     start_time: "2021-08-19 5:51",
-    stop_time: "2021-08-19 5:51"
+    stop_time: "2021-08-19 5:51",
+    img_obj: cheesePizzaImg
   },
   {
     id: "2",
@@ -23,6 +28,7 @@ const PizzaData = [
     status: "cooking",
     start_time: "2021-08-19 5:51",
     stop_time: "2021-08-19 5:51",
+    img_obj: pepperoniPizzaImg
   },
   {
     id: "3",
@@ -33,6 +39,7 @@ const PizzaData = [
     status: "cooking",
     start_time: "2021-08-19 5:51",
     stop_time: "2021-08-19 5:51",
+    img_obj: veggiePizzaImg
   },
 ];
 
@@ -41,6 +48,7 @@ type PizzaMenuItem = {
   pizza_type: string;
   name: string;
   description: string;
+  img_obj: any;
 };
 
 export function MenuItems() {
@@ -62,6 +70,7 @@ export function MenuItems() {
                 description={item.description}
                 orderUrl={orderUrl}
                 pizza_type={item.pizza_type}
+                img_obj={item.img_obj}
               />
             );
           })}
