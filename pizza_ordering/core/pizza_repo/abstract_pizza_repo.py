@@ -21,3 +21,7 @@ class AbstractPizzaRepo(abc.ABC):
     @abc.abstractmethod
     def insert_one(self, pizza: BasePizza) -> None:
         pass
+
+    @abc.abstractmethod
+    def delete_all(self) -> None:
+        pass

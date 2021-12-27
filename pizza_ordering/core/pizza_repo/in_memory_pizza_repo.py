@@ -26,4 +26,7 @@ class InMemoryPizzaRepo(AbstractPizzaRepo):
     def insert_one(self, pizza: BasePizza) -> None:
         self.pizzas.append(pizza)
 
+    def delete_all(self) -> None:
+        self.pizzas.clear()
+
 

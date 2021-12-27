@@ -10,7 +10,7 @@ def test_cancel_valid_pizza():
     new_pizza_id = create_pizza_response.json()["data"]["pizza_id"]
 
     # Action
-    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/{new_pizza_id}")
+    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/{new_pizza_id}/cancel")
 
     # Assert
     assert cancel_pizza_response.ok
@@ -22,7 +22,7 @@ def test_cancel_invalid_pizza():
     # Action
     uuid_factory = UUIDFactory()
     new_id = uuid_factory.create_new_id()
-    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/{new_id}")
+    cancel_pizza_response = requests.put(url=f"{config.back_end_url}/api/pizza/{new_id}/cancel")
 
     # Assert
     assert cancel_pizza_response.ok

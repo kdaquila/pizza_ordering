@@ -10,7 +10,7 @@ from .clock import FastClock
 from .container import container
 
 
-@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])
+@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "veggie"])
 def test_cancel_pizza(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
@@ -25,7 +25,7 @@ def test_cancel_pizza(pizza_type):
     pass
 
 
-@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])
+@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "veggie"])
 def test_cancel_pizza_twice(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
@@ -39,7 +39,7 @@ def test_cancel_pizza_twice(pizza_type):
         cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
 
-@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])
+@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "veggie"])
 def test_fail_to_cancel_pizza_because_too_late(pizza_type):
     # Arrange
     order_pizza_use_case = container.get(OrderPizzaUseCase)
@@ -53,7 +53,7 @@ def test_fail_to_cancel_pizza_because_too_late(pizza_type):
         cancel_pizza_use_case.execute(uuid.UUID(pizza_id))
 
 
-@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "sausage"])
+@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "veggie"])
 def test_fail_to_cancel_pizza_because_pizza_not_found(pizza_type):
     # Arrange
     fake_pizza_id = -5

@@ -8,11 +8,8 @@ from pizza_ordering.core.use_cases.order_pizza import OrderPizzaUseCase
 from .container import Container
 
 
-@pytest.mark.parametrize("pizza_type, expected_name", [
-    ("cheese", "Cheese Pizza"),
-    ("pepperoni", "Pepperoni Pizza"),
-    ("sausage", "Sausage Pizza")])
-def test_order_pizza(pizza_type, expected_name):
+@pytest.mark.parametrize("pizza_type", ["cheese", "pepperoni", "veggie"])
+def test_order_pizza(pizza_type):
     # Arrange
     use_case_injector = Injector([Container])
     order_pizza_use_case = use_case_injector.get(OrderPizzaUseCase)

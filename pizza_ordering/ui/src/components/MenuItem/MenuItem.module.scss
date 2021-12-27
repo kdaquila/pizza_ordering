@@ -1,0 +1,58 @@
+@use "../../global-scss/fonts";
+@use "../../global-scss/colors";
+@use "../../global-scss/sizes";
+@use "sass:map";
+
+.menuItem {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.25);
+    padding: 0;
+    border: none;
+    width: 100%;
+
+    @media screen and (max-width: sizes.$sm) {
+        flex-direction: column;
+    }
+
+    &:hover {
+        box-shadow: 0 0 16px 0 map.get(colors.$sandstone-palette, "30");
+        outline: 1px solid map.get(colors.$sandstone-palette, "40");
+    }
+}
+
+.menuItem__title {
+    @include fonts.cursive("2xl");
+    @include colors.text-sandstone("2");
+    margin-bottom: 0.5rem;
+}
+
+.menuItem__subtitle {
+    @include fonts.sans("xs");
+    @include colors.text-gray("2");
+}
+
+.menuItem__textArea {
+    @include colors.bg-sandstone("98");
+    width: 55%;
+    padding: 2rem;
+
+    @media screen and (max-width: sizes.$sm) {
+        width:100%;
+    }
+}
+
+.menuItem__imgArea {
+    width: 45%;
+
+    @media screen and (max-width: sizes.$sm) {
+        width:100%;
+    }
+}
+
+.menuItem__img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}

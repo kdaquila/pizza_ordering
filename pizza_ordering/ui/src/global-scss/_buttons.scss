@@ -1,0 +1,110 @@
+@use "sass:map";
+@use "colors";
+
+$button-gradient-brown: linear-gradient(0deg, map.get(colors.$brown-palette, "90"), map.get(colors.$brown-palette, "70"));
+$button-gradient-brown-hover: linear-gradient(0deg, map.get(colors.$brown-palette, "80"), map.get(colors.$brown-palette, "60"));
+$button-gradient-brown-active: linear-gradient(0deg, map.get(colors.$brown-palette, "75"), map.get(colors.$brown-palette, "55"));
+
+$button-gradient-blue: linear-gradient(0deg, map.get(colors.$blue-palette, "90"), map.get(colors.$blue-palette, "70"));
+$button-gradient-blue-hover: linear-gradient(0deg, map.get(colors.$blue-palette, "80"), map.get(colors.$blue-palette, "60"));
+$button-gradient-blue-active: linear-gradient(0deg, map.get(colors.$blue-palette, "75"), map.get(colors.$blue-palette, "55"));
+
+
+.button-brown {
+  color: map.get(map.get(colors.$font-colors,"brown"), "1");
+  text-decoration: none;
+  outline: none;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  border: 0.1em solid map.get(colors.$brown-palette, "30");
+  background-image: $button-gradient-brown;
+  cursor: pointer;
+
+  &:hover {
+    background-image: $button-gradient-brown-hover;
+  }
+
+  &:active {
+    background-image: $button-gradient-brown-active;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0.1em 0.2em map.get(colors.$brown-palette, "50");
+  }
+}
+
+.button-blue {
+  color: map.get(map.get(colors.$font-colors,"blue"), "1");
+  text-decoration: none;
+  outline: none;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  border: 0.1em solid map.get(colors.$blue-palette, "30");
+  background-image: $button-gradient-blue;
+  cursor: pointer;
+
+  &:hover {
+    background-image: $button-gradient-blue-hover;
+  }
+
+  &:active {
+    background-image: $button-gradient-blue-active;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0.1em 0.2em map.get(colors.$blue-palette, "50");
+  }
+}
+
+.fluidButton-brown {
+  @extend .button-brown;
+  width: 100%;
+  text-align: center;
+}
+
+.ghostButton-blue {
+  display: inline-block;
+  color: map.get(colors.$blue-palette,"20");
+  text-decoration: none;
+  outline: none;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  border: 0.1em solid map.get(colors.$blue-palette, "50");
+  cursor: pointer;
+  background-color: transparent;
+
+  &:hover {
+    background-color: map.get(colors.$blue-palette, "90");
+  }
+
+  &:active {
+    background-color: map.get(colors.$blue-palette, "85");
+  }
+
+  &:focus {
+    box-shadow: 0 0 0.1em 0.2em map.get(colors.$blue-palette, "60");
+  }
+}
+
+.ghostButton-brown {
+  display: inline-block;
+  color: map.get(colors.$brown-palette,"30");
+  text-decoration: none;
+  outline: none;
+  padding: 0.5em 1.5em;
+  border-radius: 0.2em;
+  border: 0.1em solid map.get(colors.$brown-palette, "50");
+  cursor: pointer;
+
+  &:hover {
+    background-color: map.get(colors.$brown-palette, "90");
+  }
+
+  &:active {
+    background-color: map.get(colors.$brown-palette, "85");
+  }
+
+  &:focus {
+    box-shadow: 0 0 0.1em 0.2em map.get(colors.$brown-palette, "50");
+  }
+}

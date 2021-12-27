@@ -12,13 +12,13 @@ class SamplePizzaFactory(AbstractPizzaFactory):
         self.pizza_mapping = {
             "cheese": {
                 "name": "cheese",
-                "description": "Pizza crust with only Mozarella cheese over tomato sauce"},
+                "description": "Thin crust with mozzarella cheese and tomato sauce. Serves one (11&quot;)"},
             "pepperoni": {
                 "name": "pepperoni",
-                "description": "Pizza crust with mozarella cheese and pepperoni over tomato sauce"},
-            "sausage": {
-                "name": "sausage",
-                "description": "Pizza crust with mozarella cheese and sausage over tomato sauce"}
+                "description": ""},
+            "veggie": {
+                "name": "veggie",
+                "description": "Thin crust with bell peppers, zucchini, olives, corn, onion, mozzarella cheese and tomato sauce. Serves one (11&quot;)"}
         }
         self.pizza_id_factory = pizza_id_factory
 
