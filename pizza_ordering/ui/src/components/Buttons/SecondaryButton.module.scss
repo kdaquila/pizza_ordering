@@ -9,7 +9,6 @@
     padding: 0.2rem 1rem;
     display: block;
     margin: 0 1rem 1rem 0;
-    width: 100%;
 
     &:hover {
         @include colors.bg-sandstone("90");
@@ -24,4 +23,8 @@
     &:hover {
         background-color: transparent;
     }
+}
+
+.button--fluid {
+    width: 100%;
 }

@@ -24,11 +24,13 @@ export function OrderItem(props: {
   }
 
   function format_date(date: Date) {
-    return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    return `${date.getUTCFullYear()}-${
+      date.getUTCMonth() + 1
+    }-${date.getUTCDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 
-  const startTime = props.startTime ? format_date(props.startTime) : "n/a"
-  const stopTime = props.stopTime ? format_date(props.stopTime) : "n/a"
+  const startTime = props.startTime ? format_date(props.startTime) : "n/a";
+  const stopTime = props.stopTime ? format_date(props.stopTime) : "n/a";
   const isCancellable = props.status === "cooking";
   const isFinishable = props.status === "cooking";
 
@@ -52,12 +54,16 @@ export function OrderItem(props: {
         <p className={styles.sectionValue}>{props.status}</p>
       </div>
       <PrimaryButton
+        title="Finish"
         disabled={!isFinishable}
         onClick={primaryButtonClickHandler}
+        fluid={true}
       />
       <SecondaryButton
+        title="Cancel"
         disabled={!isCancellable}
         onClick={secondaryButtonClickHandler}
+        fluid={true}
       />
     </div>
   );

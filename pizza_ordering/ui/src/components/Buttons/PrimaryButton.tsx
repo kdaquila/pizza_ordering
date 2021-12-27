@@ -1,10 +1,13 @@
 import styles from "./PrimaryButton.module.scss";
 
-export function PrimaryButton(props: { disabled: boolean; onClick: any }) {
+export function PrimaryButton(props: {title: string, disabled: boolean; onClick: any, fluid: boolean }) {
   let classes = styles.button;
 
   if (props.disabled) {
-    classes = classes + " " + styles["button--disabled"];
+    classes += " " + styles["button--disabled"];
+  }
+  else if (props.fluid) {
+    classes += " " + styles["button--fluid"];
   }
   return (
     <button
@@ -13,7 +16,7 @@ export function PrimaryButton(props: { disabled: boolean; onClick: any }) {
       disabled={props.disabled}
       onClick={props.onClick}
     >
-      Finish
+      {props.title}
     </button>
   );
 }

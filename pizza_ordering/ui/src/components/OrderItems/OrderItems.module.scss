@@ -1,5 +1,13 @@
+@use "../../global-scss/fonts";
+
 .orderWrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.ordersPlaceholder {
+    @include fonts.sans("md");
+    margin: 10rem 0;
+
 }
