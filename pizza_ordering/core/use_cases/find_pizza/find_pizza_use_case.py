@@ -19,6 +19,12 @@ class FindPizzaUseCase:
         pizzas = self.pizza_repo.get_all()
         output = []
         for pizza in pizzas:
-            output.append(PizzaDTO(pizza_id=str(pizza.pizza_id), name=pizza.name, description=pizza.description,
-                                   status=pizza.status, start_time=pizza.start_time, stop_time=pizza.stop_time))
+            output.append(PizzaDTO(pizza_id=str(pizza.pizza_id), 
+            name=pizza.name, 
+            description=pizza.description,
+            status=pizza.status, 
+            start_time=pizza.start_time.strftime("%Y-%m-%d %H:%M") if pizza.start_time else "n/a", 
+            stop_time=pizza.stop_time.strftime("%Y-%m-%d %H:%M") if pizza.stop_time else "n/a"))
         return output
+
+# strftime("%Y-%m-%d %H:%M")

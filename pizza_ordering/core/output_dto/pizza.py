@@ -8,5 +8,5 @@ class Pizza:
         self.name: str = name
         self.description: str = description
         self.status: str = status
-        self.start_time: datetime = start_time
-        self.stop_time: datetime = stop_time
+        self.start_time: str = start_time
+        self.stop_time: str = stop_time
