@@ -12,10 +12,10 @@ class SamplePizzaFactory(AbstractPizzaFactory):
         self.pizza_mapping = {
             "cheese": {
                 "name": "cheese",
-                "description": "Thin crust with mozzarella cheese and tomato sauce. Serves one (11”)"},
+                "description": "Thin crust with mozzarella cheese and tomato sauce. Serves one (11&quot;)"},
             "pepperoni": {
                 "name": "pepperoni",
-                "description": "Thin crust with pepperoni, mozzarella cheese and tomato sauce. Serves one (11”)"},
+                "description": ""},
             "veggie": {
                 "name": "veggie",
                 "description": "Thin crust with bell peppers, zucchini, olives, corn, onion, mozzarella cheese and tomato sauce. Serves one (11&quot;)"}

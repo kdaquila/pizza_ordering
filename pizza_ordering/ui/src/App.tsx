@@ -1,10 +1,9 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Footer } from './Footer/Footer';
-import { Hero } from './Hero/Hero';
-import { Menu } from './Menu/Menu';
-import { Navbar } from './Navbar/Navbar';
-import { Orders } from './Orders/Orders';
+import { Route, Routes } from 'react-router-dom';
+import { Footer } from './components/Footer/Footer';
+import { Menu } from './components/Menu/Menu';
+import { Navbar } from './components/Navbar/Navbar';
+import { Orders } from './components/Orders/Orders';
+
 
 function App() {
   return (
