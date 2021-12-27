@@ -8,8 +8,8 @@ export function OrderItem(props: {
   id: string;
   name: string;
   status: string;
-  startTime: string;
-  stopTime: string;
+  startTime: Date | null;
+  stopTime: Date | null;
   pizzaEndpoint: string;
   onUpdateOrders: any;
 }) {
@@ -23,6 +23,12 @@ export function OrderItem(props: {
     props.onUpdateOrders();
   }
 
+  function format_date(date: Date) {
+    return `${date.getUTCFullYear()}-${date.getUTCMonth()+1}-${date.getUTCDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+  }
+
+  const startTime = props.startTime ? format_date(props.startTime) : "n/a"
+  const stopTime = props.stopTime ? format_date(props.stopTime) : "n/a"
   const isCancellable = props.status === "cooking";
   const isFinishable = props.status === "cooking";
 
@@ -35,11 +41,11 @@ export function OrderItem(props: {
       </div>
       <div className="mb-3">
         <h2 className={styles.sectionName}>Started</h2>
-        <p className={styles.sectionValue}>{props.startTime}</p>
+        <p className={styles.sectionValue}>{startTime}</p>
       </div>
       <div className="mb-3">
         <h2 className={styles.sectionName}>Stopped</h2>
-        <p className={styles.sectionValue}>{props.stopTime}</p>
+        <p className={styles.sectionValue}>{stopTime}</p>
       </div>
       <div className="mb-4">
         <h2 className={styles.sectionName}>Status</h2>
