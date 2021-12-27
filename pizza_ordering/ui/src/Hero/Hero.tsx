@@ -1,12 +1,12 @@
 import styles from "./Hero.module.scss";
 
-export function Hero() {
+export function Hero(props: {title: string, subtitle: string}) {
   return (
     <div className="container my-5">
       <div className="d-flex justify-content-center">
-        <h1 className={styles.title}>Menu</h1>
+        <h1 className={styles.title}>{props.title}</h1>
       </div>
-      <h2 className={styles.subtitle}>Click an item below to submit order</h2>
+      <h2 className={styles.subtitle}>{props.subtitle}</h2>
     </div>
   );
 }

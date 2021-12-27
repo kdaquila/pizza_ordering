@@ -9,8 +9,7 @@ import { Orders } from './Orders/Orders';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Hero />
+      <Navbar />      
       <Routes>
         <Route path="/" element={<Menu />} /> 
         <Route path="order" element={<Orders />} />
