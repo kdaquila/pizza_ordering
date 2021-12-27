@@ -4,7 +4,7 @@ import { PizzaOrder } from "../../core/pizza_order";
 import { OrderItem } from "../OrderItem/OrderItem";
 import styles from "./OrderItems.module.scss";
 
-const getUrl = "http://127.0.0.1:8000/api/pizza";
+const pizzaEndpoint = "http://127.0.0.1:8000/api/pizza";
 
 const OrderData: PizzaOrder[] = [
   {
@@ -48,12 +48,9 @@ export function OrderItems() {
   const [orderData, setOrderData] = useState<PizzaOrder[]>();
 
   useEffect(() => {
-    function run_async_task() {
-      get_orders(getUrl).then((orders) => {
-        setOrderData(orders);
-      });
-    }
-    run_async_task();
+    get_orders(pizzaEndpoint).then((orders) => {
+      setOrderData(orders);
+    });
   }, []);
 
   return (
@@ -68,6 +65,7 @@ export function OrderItems() {
               startTime={item.startTime}
               stopTime={item.stopTime}
               status={item.status}
+              pizzaEndpoint={pizzaEndpoint}
             />
           );
         })}
