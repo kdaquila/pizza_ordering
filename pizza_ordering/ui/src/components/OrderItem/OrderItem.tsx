@@ -1,29 +1,30 @@
 import { PrimaryButton } from "../Buttons/PrimaryButton";
 import { SecondaryButton } from "../Buttons/SecondaryButton";
-import styles from "./OrderItem.module.scss"
+import { PizzaOrder } from "../OrderItems/OrderItems";
+import styles from "./OrderItem.module.scss";
 
-export function OrderItem() {
+export function OrderItem(props: PizzaOrder) {
   return (
     <div className={styles.orderItem}>
-      <h1 className={styles.title} >Cheese Pizza</h1>
+      <h1 className={styles.title}>{props.name}</h1>
       <div className="mb-3">
         <h2 className={styles.sectionName}>Order Id</h2>
-        <p className={styles.sectionValue}>e01b4d97-aa17-40b9-b9c6-81e8e31a396e</p>
+        <p className={styles.sectionValue}>{props.id}</p>
       </div>
       <div className="mb-3">
         <h2 className={styles.sectionName}>Started</h2>
-        <p className={styles.sectionValue}>2021-12-25 04:16</p>
+        <p className={styles.sectionValue}>{props.startTime}</p>
       </div>
       <div className="mb-3">
         <h2 className={styles.sectionName}>Stopped</h2>
-        <p className={styles.sectionValue}>n/a</p>
+        <p className={styles.sectionValue}>{props.stopTime}</p>
       </div>
-      <div className="mb-3">
+      <div className="mb-4">
         <h2 className={styles.sectionName}>Status</h2>
-        <p className={styles.sectionValue}>cooking</p>
+        <p className={styles.sectionValue}>{props.status}</p>
       </div>
-      <PrimaryButton disabled={false}/>
-      <SecondaryButton disabled={false}/>
+      <PrimaryButton disabled={false} />
+      <SecondaryButton disabled={false} />
     </div>
   );
 }

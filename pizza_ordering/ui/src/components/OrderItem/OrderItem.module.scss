@@ -1,10 +1,15 @@
 @use "../../global-scss/fonts";
 @use "../../global-scss/colors";
+@use "../../global-scss/sizes";
 
 .orderItem {
     @include colors.bg-sandstone("98");
     padding: 2rem;
     margin: 0 1rem 1rem 0;
+    
+    @media screen and (min-width: sizes.$xs) {
+        min-width: 300px;
+    }
 }
 
 .title {
