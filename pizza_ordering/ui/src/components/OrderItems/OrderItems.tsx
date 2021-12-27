@@ -48,10 +48,14 @@ export function OrderItems() {
   const [orderData, setOrderData] = useState<PizzaOrder[]>();
 
   useEffect(() => {
+    onUpdateOrders()
+  }, []);
+
+  function onUpdateOrders() {
     get_orders(pizzaEndpoint).then((orders) => {
       setOrderData(orders);
     });
-  }, []);
+  }
 
   return (
     <div className={styles.orderWrapper}>
@@ -66,6 +70,7 @@ export function OrderItems() {
               stopTime={item.stopTime}
               status={item.status}
               pizzaEndpoint={pizzaEndpoint}
+              onUpdateOrders={onUpdateOrders}
             />
           );
         })}

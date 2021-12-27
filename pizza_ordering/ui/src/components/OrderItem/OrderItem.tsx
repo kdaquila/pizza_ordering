@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { cancel_order } from "../../core/cancel_order";
 import { finish_order } from "../../core/finish_order";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
@@ -12,13 +11,16 @@ export function OrderItem(props: {
   startTime: string;
   stopTime: string;
   pizzaEndpoint: string;
+  onUpdateOrders: any;
 }) {
-  function primaryButtonClickHandler() {
-    finish_order(props.pizzaEndpoint, props.id).then((response) => {});
+  async function primaryButtonClickHandler() {
+    await finish_order(props.pizzaEndpoint, props.id).then((response) => {});
+    props.onUpdateOrders();
   }
 
-  function secondaryButtonClickHandler() {
-    cancel_order(props.pizzaEndpoint, props.id).then((response) => {});
+  async function secondaryButtonClickHandler() {
+    await cancel_order(props.pizzaEndpoint, props.id).then((response) => {});
+    props.onUpdateOrders();
   }
 
   const isCancellable = props.status === "cooking";
