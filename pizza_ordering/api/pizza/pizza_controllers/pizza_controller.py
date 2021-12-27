@@ -3,7 +3,7 @@ import json
 from django.views import View
 
 from pizza_ordering.core.exceptions import ValidationError, PizzaNotFound, CannotCancelPizza
-from pizza.container import order_pizza_use_case, find_pizza_use_case
+from pizza.container import order_pizza_use_case, find_pizza_use_case, delete_pizza_use_case
 from pizza.json_response import json_response
 
 
@@ -45,6 +45,30 @@ class PizzaController(View):
             response_obj["status"] = "success"
 
         except ValidationError as err:
+            response_obj["status"] = "fail"
+            response_obj["message"] = str(err)
+
+        except Exception as err:
+            response_obj["status"] = "error"
+            response_obj["message"] = "Internal server error"
+
+        return json_response(response_obj)
+
+    def delete(self, request):
+        """
+        This handles the route DELETE /api/pizza. It allows all pizza orders to be deleted
+        :param request:
+        :return:
+        """
+
+        response_obj = {"status": "",
+                        "message": "",
+                        "data": None}
+        try:
+            response_obj["data"] = delete_pizza_use_case.execute()
+            response_obj["status"] = "success"
+
+        except PizzaNotFound as err:
             response_obj["status"] = "fail"
             response_obj["message"] = str(err)
 

@@ -50,3 +50,6 @@ class DjangoORMPizzaRepo(AbstractPizzaRepo):
             stop_time=pizza.stop_time,
             status=pizza.status)
         new_pizza.save()
+
+    def delete_all(self) -> None:
+        Pizza.objects.all().delete()

@@ -5,3 +5,4 @@
 - [X] User can finish a pizza order
 - [X] User can cancel a pizza order
 - [X] User can get list of current pizza orders
+- [X] User can delete all current pizza orders
