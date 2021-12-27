@@ -43,6 +43,7 @@ class PizzaController(View):
 
             response_obj["data"] = order_pizza_use_case.execute(pizza_type)
             response_obj["status"] = "success"
+            response_obj["message"] = "success: pizza was ordered"
 
         except ValidationError as err:
             response_obj["status"] = "fail"
@@ -67,6 +68,7 @@ class PizzaController(View):
         try:
             response_obj["data"] = delete_pizza_use_case.execute()
             response_obj["status"] = "success"
+            response_obj["message"] = "success: pizzas were deleted"
 
         except PizzaNotFound as err:
             response_obj["status"] = "fail"

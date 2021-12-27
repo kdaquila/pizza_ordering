@@ -6,7 +6,7 @@ export function PrimaryButton(props: {title: string, disabled: boolean; onClick:
   if (props.disabled) {
     classes += " " + styles["button--disabled"];
   }
-  else if (props.fluid) {
+  if (props.fluid) {
     classes += " " + styles["button--fluid"];
   }
   return (

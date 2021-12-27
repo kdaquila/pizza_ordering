@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { AppContext } from "../../App";
 import { cancel_order } from "../../core/cancel_order";
 import { finish_order } from "../../core/finish_order";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
@@ -13,14 +15,19 @@ export function OrderItem(props: {
   pizzaEndpoint: string;
   onUpdateOrders: any;
 }) {
+
+  const appContext = useContext(AppContext)
+  
   async function primaryButtonClickHandler() {
     await finish_order(props.pizzaEndpoint, props.id).then((response) => {});
     props.onUpdateOrders();
   }
 
   async function secondaryButtonClickHandler() {
-    await cancel_order(props.pizzaEndpoint, props.id).then((response) => {});
+    const response = await cancel_order(props.pizzaEndpoint, props.id);
     props.onUpdateOrders();
+    appContext?.setFlashMessage(response.data.message)
+    appContext?.setFlashMessageStatus(response.data.status)
   }
 
   function format_date(date: Date) {

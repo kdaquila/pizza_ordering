@@ -1,4 +1,6 @@
-import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "../../App";
+import { place_order } from "../../core/place_order";
 import styles from "./MenuItem.module.scss";
 
 export function MenuItem(props: {
@@ -8,17 +10,17 @@ export function MenuItem(props: {
   pizza_type: string;
   img_obj: any;
 }) {
-  function onClickHandler() {
-    console.log(
-      `send message to ${props.orderUrl} with body of: {pizza_type: ${props.pizza_type}}`
-    );
-    axios.post(props.orderUrl, {
-      pizza_type: props.pizza_type,
-    });
+  const appContext = useContext(AppContext);
+
+  async function handleClick() {
+    const response = await place_order(props.orderUrl, props.pizza_type);
+    console.log(response)
+    const message = response.data.message;
+    appContext?.setFlashMessage(message)
   }
 
   return (
-    <button className={styles.menuItem} onClick={onClickHandler}>
+    <button className={styles.menuItem} onClick={handleClick}>
       <div className={styles.menuItem__imgArea}>
         <img
           className={styles.menuItem__img}

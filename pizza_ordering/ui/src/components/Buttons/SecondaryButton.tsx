@@ -5,7 +5,7 @@ export function SecondaryButton(props: {title:string, disabled: boolean, onClick
   if (props.disabled) {
     classes = classes + " " + styles["button--disabled"];
   }
-  else if (props.fluid) {
+  if (props.fluid) {
     classes += " " + styles["button--fluid"];
   }
   return (
