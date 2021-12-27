@@ -15,6 +15,7 @@ autopep8 = "*"
 psycopg2 = "*"
 ipython = "*"
 pytz = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
