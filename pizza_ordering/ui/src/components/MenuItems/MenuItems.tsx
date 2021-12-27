@@ -13,7 +13,7 @@ const PizzaData = [
     name: "Cheese Pizza",
     pizza_type: "cheese",
     description:
-      "Thin crust with mozzarella cheese and tomato sauce. Serves one (11&quot;))",
+      "Thin crust with mozzarella cheese and tomato sauce. Serves one. 11\"",
     status: "cooking",
     start_time: "2021-08-19 5:51",
     stop_time: "2021-08-19 5:51",
@@ -24,7 +24,7 @@ const PizzaData = [
     name: "Pepperoni Pizza",
     pizza_type: "pepperoni",
     description:
-      "Thin crust with pepperoni, mozzarella cheese and tomato sauce. Serves one (11&quot;)",
+      "Thin crust with pepperoni, mozzarella cheese and tomato sauce. Serves one. 11\"",
     status: "cooking",
     start_time: "2021-08-19 5:51",
     stop_time: "2021-08-19 5:51",
@@ -35,7 +35,7 @@ const PizzaData = [
     name: "Veggie Pizza",
     pizza_type: "veggie",
     description:
-      "Thin crust with bell peppers, zucchini, olives, corn, onion, mozzarella cheese and tomato sauce. Serves one (11&quot;)",
+      "Thin crust with bell peppers, zucchini, olives, corn, onion, mozzarella cheese and tomato sauce. Serves one. 11\"",
     status: "cooking",
     start_time: "2021-08-19 5:51",
     stop_time: "2021-08-19 5:51",
