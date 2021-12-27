@@ -1,6 +1,6 @@
+import { PizzaOrder } from "../../core/pizza_order";
 import { PrimaryButton } from "../Buttons/PrimaryButton";
 import { SecondaryButton } from "../Buttons/SecondaryButton";
-import { PizzaOrder } from "../OrderItems/OrderItems";
 import styles from "./OrderItem.module.scss";
 
 export function OrderItem(props: PizzaOrder) {

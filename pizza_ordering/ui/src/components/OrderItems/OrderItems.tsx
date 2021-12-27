@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { get_orders } from "../../core/get_orders";
+import { PizzaOrder } from "../../core/pizza_order";
 import { OrderItem } from "../OrderItem/OrderItem";
 import styles from "./OrderItems.module.scss";
+
+const getUrl = "http://127.0.0.1:8000/api/pizza";
 
 const OrderData: PizzaOrder[] = [
   {
@@ -40,35 +44,33 @@ const OrderData: PizzaOrder[] = [
   },
 ];
 
-export type PizzaOrder = {
-  id: string;
-  name: string;
-  startTime: string;
-  stopTime: string;
-  status: string;
-};
-
 export function OrderItems() {
   const [orderData, setOrderData] = useState<PizzaOrder[]>();
 
   useEffect(() => {
-    setOrderData(OrderData)
-  }, [orderData])
+    function run_async_task() {
+      get_orders(getUrl).then((orders) => {
+        setOrderData(orders);
+      });
+    }
+    run_async_task();
+  }, []);
 
   return (
     <div className={styles.orderWrapper}>
-      {orderData && orderData.map((item) => {
-        return (
-          <OrderItem
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            startTime={item.startTime}
-            stopTime={item.stopTime}
-            status={item.status}
-          />
-        );
-      })}
+      {orderData &&
+        orderData.map((item) => {
+          return (
+            <OrderItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              startTime={item.startTime}
+              stopTime={item.stopTime}
+              status={item.status}
+            />
+          );
+        })}
     </div>
   );
 }
